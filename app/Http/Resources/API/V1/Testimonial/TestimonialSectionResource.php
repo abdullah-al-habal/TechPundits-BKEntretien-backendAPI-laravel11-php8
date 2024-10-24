@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Resources\API\V1\Testimonial;
 
 use Illuminate\Http\Request;
@@ -12,6 +14,9 @@ class TestimonialSectionResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'title' => $this->title,
+            'description' => $this->description,
+        ];
     }
 }

@@ -1,0 +1,122 @@
+parameters:
+    level: max
+    paths:
+        - app
+        - config
+        - database
+        - routes
+        - tests
+    
+    # Exclude paths from analysis
+    excludePaths:
+        - vendor/*
+        - storage/*
+        - bootstrap/cache/*
+        - node_modules/*
+    
+    # Enable bleeding edge features
+    bleeding_edge: true
+    
+    # Check for dead code
+    checkAlwaysTrueCheckTypeFunctionCall: true
+    checkAlwaysTrueInstanceof: true
+    checkAlwaysTrueStrictComparison: true
+    checkExplicitMixedMissingReturn: true
+    checkFunctionNameCase: true
+    checkInternalClassCaseSensitivity: true
+    reportMaybesInMethodSignatures: true
+    reportStaticMethodSignatures: true
+    
+    # Explicit types
+    checkMissingIterableValueType: true
+    checkGenericClassInNonGenericObjectType: true
+    
+    # Error handling
+    reportUnmatchedIgnoredErrors: true
+    
+    # Type inference
+    inferPrivatePropertyTypeFromConstructor: true
+    
+    # Additional checks
+    checkMissingCallableSignature: true
+    checkTooWideReturnTypesInProtectedAndPublicMethods: true
+    checkUninitializedProperties: true
+    checkUnionTypes: true
+    checkGenericObjectTypeUsage: true
+    checkClassCaseSensitivity: true
+    checkFunctionArgumentTypes: true
+    checkFunctionReturnType: true
+    checkMethodArgumentTypes: true
+    checkMethodReturnType: true
+    checkPropertyTypes: true
+    checkStaticMethodArgumentTypes: true
+    checkStaticMethodReturnType: true
+    
+    # Dynamic return type extensions
+    dynamicReturnTypeExtensions:
+        - Phpstan\Type\Symfony\ComponentStringExtension
+        - Phpstan\Type\Symfony\RequestDynamicReturnTypeExtension
+    
+    ignoreErrors:
+        - '#PHPDoc tag @var#'
+        - '#Call to an undefined method [a-zA-Z0-9\\_]+::factory\(\)#'
+        - '#Access to an undefined property [a-zA-Z0-9\\_]+::\$id#'
+        - '#Method [a-zA-Z0-9\\_]+::[a-zA-Z0-9\\_]+\(\) should return [a-zA-Z0-9\\_]+ but returns [a-zA-Z0-9\\_]+#'
+    
+    # Bootstrap files for initialization
+    bootstrapFiles:
+        - vendor/autoload.php
+    
+    # Custom rules
+    rules:
+        - Larastan\Larastan\Rules\NoModelMakeRule
+        - Larastan\Larastan\Rules\NoUnnecessaryCollectionCallRule
+        - Larastan\Larastan\Rules\ModelProperties\ModelPropertyRule
+        - Larastan\Larastan\Rules\ModelProperties\ModelPropertiesRule
+        - PHPStan\Rules\Classes\UnusedPrivateMethodRule
+        - PHPStan\Rules\Classes\UnusedPrivatePropertyRule
+        - PHPStan\Rules\Functions\UnusedClosureUseVariableRule
+        - PHPStan\Rules\Functions\UnusedFunctionParameterRule
+        - PHPStan\Rules\Methods\UnusedConstructorParameterRule
+        - PHPStan\Rules\Methods\UnusedPrivateMethodParameterRule
+
+services:
+    -
+        class: Larastan\Larastan\Rules\ModelRuleHelper
+        tags:
+            - phpstan.rules.rule
+    -
+        class: PHPStan\Rules\Classes\EnumCaseImplementsInterfaceRule
+        tags:
+            - phpstan.rules.rule
+    -
+        class: PHPStan\Rules\Classes\UnusedPrivateMethodRule
+        tags:
+            - phpstan.rules.rule
+    -
+        class: PHPStan\Rules\Classes\UnusedPrivatePropertyRule
+        tags:
+            - phpstan.rules.rule
+    -
+        class: PHPStan\Rules\Functions\UnusedClosureUseVariableRule
+        tags:
+            - phpstan.rules.rule
+    -
+        class: PHPStan\Rules\Functions\UnusedFunctionParameterRule
+        tags:
+            - phpstan.rules.rule
+    -
+        class: PHPStan\Rules\Methods\UnusedConstructorParameterRule
+        tags:
+            - phpstan.rules.rule
+    -
+        class: PHPStan\Rules\Methods\UnusedPrivateMethodParameterRule
+        tags:
+            - phpstan.rules.rule
+
+includes:
+    - vendor/nunomaduro/larastan/extension.neon
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
+    - vendor/phpstan/phpstan-deprecation-rules/rules.neon
+    - vendor/phpstan/phpstan-phpunit/rules.neon
+    - vendor/phpstan/phpstan-phpunit/extension.neon

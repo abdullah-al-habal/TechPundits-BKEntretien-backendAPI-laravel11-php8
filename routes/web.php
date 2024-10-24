@@ -1,7 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Support\Facades\Route;
 
-Route::get('/login', function () {
-    return "hello world ";
-})->name('login');
+Route::get('/login', static fn () => 'hello world ')->name('login');

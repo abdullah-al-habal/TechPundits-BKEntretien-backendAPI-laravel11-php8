@@ -13,14 +13,14 @@ function myTrans(string $key): string
 {
     $local = app()->getLocale();
 
-    return __("$local.$key");
+    return __("{$local}.{$key}");
 }
 
 function isRTL(): string
 {
     $local = app()->getLocale();
 
-    return $local == 'ar' ? 'rtl' : 'ltr';
+    return 'ar' === $local ? 'rtl' : 'ltr';
 }
 
 function dateFormat(string $date): string
@@ -30,10 +30,10 @@ function dateFormat(string $date): string
 
 function requestToPanel(): bool
 {
-    return request()->route()->getPrefix() != '/panel';
+    return '/panel' !== request()->route()->getPrefix();
 }
 
-if (! function_exists('currentRouteName')) {
+if (!function_exists('currentRouteName')) {
     function currentRouteName(): string
     {
         $route = Request::route();
@@ -47,14 +47,14 @@ if (! function_exists('currentRouteName')) {
     }
 }
 
-if (! function_exists('isLocalhost')) {
+if (!function_exists('isLocalhost')) {
     function isLocalhost(): bool
     {
-        return parse_url(URL::full())['host'] === 'localhost';
+        return 'localhost' === parse_url(URL::full())['host'];
     }
 }
 
-if (! function_exists('notFoundView')) {
+if (!function_exists('notFoundView')) {
     function notFoundView(): mixed
     {
         try {
@@ -67,39 +67,39 @@ if (! function_exists('notFoundView')) {
     }
 }
 
-if (! function_exists('unSlug')) {
+if (!function_exists('unSlug')) {
     function unSlug(string $title, string $replace = '-', string $replaceTo = ' '): string
     {
         return str_replace($replace, $replaceTo, $title);
     }
 }
 
-if (! function_exists('strSlug')) {
+if (!function_exists('strSlug')) {
     function strSlug(string $title, string $replace = ' ', string $replaceTo = '-'): string
     {
         return str_replace($replace, $replaceTo, $title);
     }
 }
 
-if (! function_exists('isCurrentRouteName')) {
+if (!function_exists('isCurrentRouteName')) {
     function isCurrentRouteName(string $name, string $returnProp = 'active'): string
     {
         return currentRouteName() === $name ? $returnProp : '';
     }
 }
 
-if (! function_exists('storageAsset')) {
+if (!function_exists('storageAsset')) {
     function storageAsset(string $path): string
     {
         return storage_path($path);
     }
 }
 
-if (! function_exists('saveFile')) {
+if (!function_exists('saveFile')) {
     function saveFile($file, $name, $path, array $unlink = [], $type = null, bool $check = true): ?string
     {
         try {
-            if ($unlink !== []) {
+            if ([] !== $unlink) {
                 $oldPath = substr((string) $unlink['model']['field'], 1);
                 if (file_exists($oldPath)) {
                     unlink($oldPath);
@@ -109,12 +109,12 @@ if (! function_exists('saveFile')) {
                 checkIfFileExists($file, $name);
             }
             $pathFixing = str_replace('\\', '/', $path);
-            $fileName = time().Str::random(15).'.'.$file->getClientOriginalExtension();
-            $pathToSave = storage_path('app/public/'.$pathFixing);
+            $fileName = time() . Str::random(15) . '.' . $file->getClientOriginalExtension();
+            $pathToSave = storage_path('app/public/' . $pathFixing);
             $file->move($pathToSave, $fileName);
             session()->flash('success', 'save new file success');
 
-            return $pathFixing.$fileName;
+            return $pathFixing . $fileName;
         } catch (Exception $e) {
             // Return null if an error occurs
             return null;
@@ -122,37 +122,40 @@ if (! function_exists('saveFile')) {
     }
 }
 
-if (! function_exists('checkIfFileExists')) {
+if (!function_exists('checkIfFileExists')) {
     function checkIfFileExists($file, $name): void
     {
-        if (isset(request()->all()[$name]) && gettype(request()->all()[$name]) !== 'array' && (! isset($file) || ! request()->hasFile($name))) {
+        if (isset(request()->all()[$name]) && 'array' !== gettype(request()->all()[$name]) && (!isset($file) || !request()->hasFile($name))) {
             // throw new PublicException('please make sure you store correct file');
         }
     }
 }
 
-if (! function_exists('requestForApi')) {
+if (!function_exists('requestForApi')) {
     function requestForApi(): bool
     {
         try {
             $url = Route::current();
 
-            return $url != null && $url->getPrefix() == 'api';
+            return null !== $url && 'api' === $url->getPrefix();
         } catch (Exception $e) {
             return false; // Return false if an exception occurs
         }
     }
 }
 
-if (! function_exists('formatErrorMessage')) {
+if (!function_exists('formatErrorMessage')) {
     function formatErrorMessage($class, $line, $message): string
     {
-        return 'Oops there is something went wrong in file '.$class.' in Line '.$line.' Details : '.$message;
+        return 'Oops there is something went wrong in file ' . $class . ' in Line ' . $line . ' Details : ' . $message;
     }
 }
 
-if (! function_exists('throwExceptionResponse')) {
+if (!function_exists('throwExceptionResponse')) {
     /**
+     * @param null|mixed $class
+     * @param null|mixed $line
+     *
      * @throws Exception
      */
     function throwExceptionResponse($class = null, $line = null, string $message = '', bool $useMessage = true): void
@@ -168,7 +171,7 @@ if (! function_exists('throwExceptionResponse')) {
     }
 }
 
-if (! function_exists('throwValidationException')) {
+if (!function_exists('throwValidationException')) {
     function throwValidationException($errors): RedirectResponse
     {
         try {
@@ -182,7 +185,7 @@ if (! function_exists('throwValidationException')) {
     }
 }
 
-if (! function_exists('generateRandomCode')) {
+if (!function_exists('generateRandomCode')) {
     function generateRandomCode(int $length): string
     {
         $random = str_shuffle('abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890!$%^&!$%^&');
@@ -191,9 +194,11 @@ if (! function_exists('generateRandomCode')) {
     }
 }
 
-if (! function_exists('saveImage')) {
+if (!function_exists('saveImage')) {
     /**
-     * @return string|null
+     * @param null|mixed $imageRequestName
+     *
+     * @return null|string
      */
     function saveImage(mixed $model = null, ?object $request = null, $imageRequestName = null)
     {
@@ -203,7 +208,7 @@ if (! function_exists('saveImage')) {
                     ?? $request[$imageRequestName],
                 $imageRequestName,
                 $model->imagePath,
-                $model['id'] != null
+                null !== $model['id']
                     ? ['model' => $model, 'field' => $imageRequestName]
                     : []
             );
@@ -214,7 +219,7 @@ if (! function_exists('saveImage')) {
     }
 }
 
-if (! function_exists('deleteImage')) {
+if (!function_exists('deleteImage')) {
     function deleteImage($path = null): void
     {
         if (file_exists($path)) {
@@ -223,7 +228,7 @@ if (! function_exists('deleteImage')) {
     }
 }
 
-if (! function_exists('isUpdatedRequest')) {
+if (!function_exists('isUpdatedRequest')) {
     function isUpdatedRequest(): bool
     {
         return request()->isMethod('PUT') || request()->isMethod('PATCH');

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Resources\API\V1\Faq;
 
 use Illuminate\Http\Request;
@@ -12,6 +14,20 @@ class FaqResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'image' => $this->image,
+            'question' => $this->question,
+            'answer' => $this->answer,
+        ];
+    }
+
+    public function with(Request $request): array
+    {
+        return [
+            'meta' => [
+                'version' => config('app.version', '1.0'),
+                'api_version' => 'v1',
+            ],
+        ];
     }
 }

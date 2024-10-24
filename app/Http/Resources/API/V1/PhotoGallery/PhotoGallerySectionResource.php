@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Resources\API\V1\PhotoGallery;
 
 use Illuminate\Http\Request;
@@ -12,6 +14,9 @@ class PhotoGallerySectionResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'title' => $this->title,
+            'images' => $this->when($this->relationLoaded('images'), fn () => PhotoGallerySectionImageResource::collection($this->images)),
+        ];
     }
 }

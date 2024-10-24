@@ -1,14 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services\Auth;
 
 use App\Constants\AuthConstants;
 use App\DTOs\Auth\LoginDTO;
 use App\DTOs\Auth\RegisterDTO;
-use App\Exceptions\Api\V1\Auth\LoginException;
-use App\Exceptions\Api\V1\Auth\LogoutException;
-use App\Exceptions\Api\V1\Auth\RegisterException;
+use App\Exceptions\API\Auth\LoginException;
+use App\Exceptions\API\Auth\LogoutException;
+use App\Exceptions\API\Auth\RegisterException;
 use App\Models\User;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -16,8 +19,8 @@ class AuthService
 {
     public function login(LoginDTO $loginDTO): array
     {
-        if (!Auth::attempt(['email' => $loginDTO->email, 'password' => $loginDTO->password])) {
-            throw new LoginException(AuthConstants::INVALID_CREDENTIALS_MESSAGE);
+        if (!Auth::attempt(credentials: ['email' => $loginDTO->email, 'password' => $loginDTO->password])) {
+            throw new LoginException();
         }
 
         /** @var User $user */
@@ -35,8 +38,8 @@ class AuthService
     {
         try {
             $user->tokens()->delete();
-        } catch (\Exception $e) {
-            throw new LogoutException(AuthConstants::LOGOUT_ERROR_MESSAGE);
+        } catch (Exception $e) {
+            throw new LogoutException();
         }
     }
 
@@ -56,8 +59,8 @@ class AuthService
                 'access_token' => $token,
                 'token_type' => AuthConstants::TOKEN_TYPE,
             ];
-        } catch (\Exception $e) {
-            throw new RegisterException(AuthConstants::REGISTER_ERROR_MESSAGE);
+        } catch (Exception $e) {
+            throw new RegisterException();
         }
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\ContactUs\ContactUsResource\Pages;
 
 use App\Filament\Resources\ContactUs\ContactUsResource;

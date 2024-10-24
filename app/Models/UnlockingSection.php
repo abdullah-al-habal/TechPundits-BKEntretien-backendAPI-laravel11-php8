@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +11,7 @@ class UnlockingSection extends Model
 {
     protected $fillable = [
         'title',
-        'description'
+        'description',
     ];
 
     public function unlocking(): BelongsTo

@@ -16,7 +16,7 @@ abstract class BaseHttpException extends Exception
         ?string $message = null,
         public ?array $data = null
     ) {
-        $message = $message ?? ErrorMessages::getMessage($errorCode);
+        $message ??= ErrorMessages::getMessage($errorCode);
         parent::__construct($message, $httpStatus);
     }
 

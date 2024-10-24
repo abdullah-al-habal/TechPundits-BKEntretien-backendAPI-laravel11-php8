@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +11,7 @@ class ContactUsSection extends Model
 {
     protected $fillable = [
         'title',
-        'description'
+        'description',
     ];
 
     public function contactUs(): BelongsTo

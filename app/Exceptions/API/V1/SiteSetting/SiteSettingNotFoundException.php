@@ -11,6 +11,6 @@ class SiteSettingNotFoundException extends BaseHttpException
 {
     public function __construct(?array $data = null)
     {
-        parent::__construct(ErrorCode::SITE_SETTING_NOT_FOUND, 404, null, $data);
+        parent::__construct(errorCode: ErrorCode::SITE_SETTING_NOT_FOUND, httpStatus: 404, message: null, data: $data);
     }
 }

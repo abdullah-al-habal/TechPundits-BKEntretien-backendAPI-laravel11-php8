@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\API;
 
-use App\Exceptions\SuccessMessages;
-use App\Enums\SuccessCode;
 use App\Enums\ErrorCode;
+use App\Enums\SuccessCode;
+use App\Exceptions\ErrorMessages;
+use App\Exceptions\SuccessMessages;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 
@@ -13,10 +16,7 @@ class BaseApiController extends Controller
     /**
      * Send a success response.
      *
-     * @param  mixed  $data
-     * @param  SuccessCode|null  $successCode
-     * @param  int  $code
-     * @return JsonResponse
+     * @param mixed $data
      */
     protected function sendResponse(
         $data,
@@ -29,7 +29,7 @@ class BaseApiController extends Controller
             'status' => $code,
         ];
 
-        if ($successCode !== null) {
+        if (null !== $successCode) {
             $response['message'] = SuccessMessages::getMessage($successCode);
             $response['success_code'] = $successCode->value;
         }
@@ -39,19 +39,17 @@ class BaseApiController extends Controller
 
     /**
      * Send an error response.
-     *
-     * @param  string  $message
-     * @param  int  $code
-     * @param  ErrorCode|null  $errorCode
-     * @param  array|string|null  $errors
-     * @return JsonResponse
      */
     protected function sendError(
         string $message,
         int $code = 400,
         ?ErrorCode $errorCode = null,
-        array|string|null $errors = null
+        null|array|string $errors = null
     ): JsonResponse {
+
+        if (null !== $errorCode) {
+            $message = ErrorMessages::getMessage($errorCode);
+        }
 
         $response = [
             'success' => false,
@@ -59,11 +57,11 @@ class BaseApiController extends Controller
             'status' => $code,
         ];
 
-        if ($errorCode !== null) {
+        if (null !== $errorCode) {
             $response['error_code'] = $errorCode->value;
         }
 
-        if ($errors !== null) {
+        if (null !== $errors) {
             $response['errors'] = $errors;
         }
 

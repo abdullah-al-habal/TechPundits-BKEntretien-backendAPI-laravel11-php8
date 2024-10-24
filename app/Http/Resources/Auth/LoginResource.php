@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Resources\Auth;
 
 use Illuminate\Http\Request;
@@ -11,6 +13,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     type="object",
  *     title="Contact Us Information",
  *     description="Details of contact us information",
+ *
  *     @OA\Property(property="name", type="string", example="John Doe"),
  *     @OA\Property(property="email", type="string", example="john@example.com"),
  *     @OA\Property(property="phone", type="string", example="(123) 456-7890"),
@@ -21,7 +24,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     )
  * )
  */
-
 class LoginResource extends JsonResource
 {
     public function toArray(Request $request): array

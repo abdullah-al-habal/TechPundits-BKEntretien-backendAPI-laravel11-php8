@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Faq\FaqResource\Pages;
 
 use App\Filament\Resources\Faq\FaqResource;
-use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 
 class CreateFaq extends CreateRecord

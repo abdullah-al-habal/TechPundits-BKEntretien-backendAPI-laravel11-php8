@@ -1,15 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
-
+return new class extends Migration {
     public function up(): void
     {
-        Schema::create('drain_cleaning_sections', function (Blueprint $table) {
+        Schema::create('drain_cleaning_sections', static function (Blueprint $table): void {
             $table->id();
             $table->foreignId('drain_cleaning_id')->constrained('drain_cleanings')->cascadeOnDelete();
             $table->string('title');
@@ -17,7 +17,6 @@ return new class extends Migration
             $table->timestamps();
         });
     }
-
 
     public function down(): void
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Constants;
 
 enum HttpStatusCodesEnum: int
@@ -146,6 +148,6 @@ enum HttpStatusCodesEnum: int
 
     public function translatedText(): string
     {
-        return trans('http_status_codes.'.$this->text());
+        return trans('http_status_codes.' . $this->text());
     }
 }

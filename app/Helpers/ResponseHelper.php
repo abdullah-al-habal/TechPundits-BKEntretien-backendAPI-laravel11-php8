@@ -11,9 +11,9 @@ class ResponseHelper
     /**
      * Return a success JSON response.
      *
-     * @param  array  $data  Data to include in the response
-     * @param  string  $message  Success message
-     * @param  int  $status  HTTP status code
+     * @param array  $data    Data to include in the response
+     * @param string $message Success message
+     * @param int    $status  HTTP status code
      */
     public static function success(array $data = [], string $message = 'Success', int $status = 200): JsonResponse
     {
@@ -27,9 +27,9 @@ class ResponseHelper
     /**
      * Return an error JSON response.
      *
-     * @param  string  $message  Error message
-     * @param  array  $errors  Errors to include in the response
-     * @param  int  $status  HTTP status code
+     * @param string $message Error message
+     * @param array  $errors  Errors to include in the response
+     * @param int    $status  HTTP status code
      */
     public static function error(string $message = 'Error', array $errors = [], int $status = 400): JsonResponse
     {

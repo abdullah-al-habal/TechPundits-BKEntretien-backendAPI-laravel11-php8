@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
@@ -36,8 +38,9 @@ class UserResource extends Resource
                     ->maxLength(255),
                 TextInput::make('email')
                     ->email()
-                    ->required()
-            ]);
+                    ->required(),
+            ])
+        ;
     }
 
     public static function table(Tables\Table $table): Tables\Table
@@ -74,7 +77,8 @@ class UserResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+        ;
     }
 
     public static function getRelations(): array

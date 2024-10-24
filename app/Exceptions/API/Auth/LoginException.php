@@ -1,19 +1,16 @@
 <?php
 
-namespace App\Exceptions\API\V1\Auth;
+declare(strict_types=1);
 
-use Exception;
-use Illuminate\Http\JsonResponse;
+namespace App\Exceptions\API\Auth;
 
-class LoginException extends Exception
+use App\Enums\ErrorCode;
+use App\Exceptions\BaseHttpException;
+
+class LoginException extends BaseHttpException
 {
-    public function __construct(string $message = "Failed to login", int $code = 401, ?\Throwable $previous = null)
+    public function __construct(?array $data = null)
     {
-        parent::__construct(message: $message, code: $code, previous: $previous);
-    }
-
-    public function render($request): JsonResponse
-    {
-        return response()->json(data: ['error' => $this->getMessage()], status: $this->getCode());
+        parent::__construct(errorCode: ErrorCode::LOGIN_FAILED, httpStatus: 401, message: null, data: $data);
     }
 }

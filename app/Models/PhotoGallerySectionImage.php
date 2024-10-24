@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +12,7 @@ class PhotoGallerySectionImage extends Model
     protected $fillable = [
         'image',
         'alt_text',
-        'description'
+        'description',
     ];
 
     public function section(): BelongsTo

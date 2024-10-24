@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -17,7 +19,6 @@ class Unlocking extends Model
         'main_image_alt_text',
         'main_image_text',
     ];
-
 
     public function sections(): HasMany
     {

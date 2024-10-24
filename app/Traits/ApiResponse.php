@@ -30,7 +30,7 @@ trait ApiResponse
     }
 
     /**
-     * @param  array<string, mixed>|null  $errors
+     * @param null|array<string, mixed> $errors
      */
     protected function errorResponse(
         string $message,

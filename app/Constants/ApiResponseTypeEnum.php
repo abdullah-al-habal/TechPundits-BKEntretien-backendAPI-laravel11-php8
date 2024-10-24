@@ -11,6 +11,6 @@ enum ApiResponseTypeEnum: string
 
     public function translatedText(): string
     {
-        return trans("api_response_type.$this->value");
+        return trans("api_response_type.{$this->value}");
     }
 }
