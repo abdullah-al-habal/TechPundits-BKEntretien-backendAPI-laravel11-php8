@@ -6,6 +6,78 @@ namespace App\Constants;
 
 enum HttpStatusCodesEnum: int
 {
+    public function text(): string
+    {
+        return match ($this) {
+            self::CONTINUE => 'Continue',
+            self::SWITCHING_PROTOCOLS => 'Switching Protocols',
+            self::PROCESSING => 'Processing',
+            self::EARLY_HINTS => 'Early Hints',
+            self::OK => 'OK',
+            self::CREATED => 'Created',
+            self::ACCEPTED => 'Accepted',
+            self::NON_AUTHORITATIVE_INFORMATION => 'Non-Authoritative Information',
+            self::NO_CONTENT => 'No Content',
+            self::RESET_CONTENT => 'Reset Content',
+            self::PARTIAL_CONTENT => 'Partial Content',
+            self::MULTI_STATUS => 'Multi-Status',
+            self::ALREADY_REPORTED => 'Already Reported',
+            self::IM_USED => 'I\'m Used',
+            self::MULTIPLE_CHOICES => 'Multiple Choices',
+            self::MOVED_PERMANENTLY => 'Moved Permanently',
+            self::FOUND => 'Found',
+            self::SEE_OTHER => 'See Other',
+            self::NOT_MODIFIED => 'Not Modified',
+            self::USE_PROXY => 'Use Proxy',
+            self::TEMPORARY_REDIRECT => 'Temporary Redirect',
+            self::PERMANENT_REDIRECT => 'Permanent Redirect',
+            self::BAD_REQUEST => 'Bad Request',
+            self::UNAUTHORIZED => 'Unauthorized',
+            self::PAYMENT_REQUIRED => 'Payment Required',
+            self::FORBIDDEN => 'Forbidden',
+            self::NOT_FOUND => 'Not Found',
+            self::METHOD_NOT_ALLOWED => 'Method Not Allowed',
+            self::NOT_ACCEPTABLE => 'Not Acceptable',
+            self::PROXY_AUTHENTICATION_REQUIRED => 'Proxy Authentication Required',
+            self::REQUEST_TIMEOUT => 'Request Timeout',
+            self::CONFLICT => 'Conflict',
+            self::GONE => 'Gone',
+            self::LENGTH_REQUIRED => 'Length Required',
+            self::PRECONDITION_FAILED => 'Precondition Failed',
+            self::PAYLOAD_TOO_LARGE => 'Payload Too Large',
+            self::URI_TOO_LONG => 'URI Too Long',
+            self::UNSUPPORTED_MEDIA_TYPE => 'Unsupported Media Type',
+            self::RANGE_NOT_SATISFIABLE => 'Range Not Satisfiable',
+            self::EXPECTATION_FAILED => 'Expectation Failed',
+            self::IM_A_TEAPOT => 'I\'m a teapot',
+            self::MISDIRECTED_REQUEST => 'Misdirected Request',
+            self::UNPROCESSABLE_ENTITY => 'Unprocessable Entity',
+            self::LOCKED => 'Locked',
+            self::FAILED_DEPENDENCY => 'Failed Dependency',
+            self::TOO_EARLY => 'Too Early',
+            self::UPGRADE_REQUIRED => 'Upgrade Required',
+            self::PRECONDITION_REQUIRED => 'Precondition Required',
+            self::TOO_MANY_REQUESTS => 'Too Many Requests',
+            self::REQUEST_HEADER_FIELDS_TOO_LARGE => 'Request Header Fields Too Large',
+            self::UNAVAILABLE_FOR_LEGAL_REASONS => 'Unavailable For Legal Reasons',
+            self::INTERNAL_SERVER_ERROR => 'Internal Server Error',
+            self::NOT_IMPLEMENTED => 'Not Implemented',
+            self::BAD_GATEWAY => 'Bad Gateway',
+            self::SERVICE_UNAVAILABLE => 'Service Unavailable',
+            self::GATEWAY_TIMEOUT => 'Gateway Timeout',
+            self::HTTP_VERSION_NOT_SUPPORTED => 'HTTP Version Not Supported',
+            self::VARIANT_ALSO_NEGOTIATES => 'Variant Also Negotiates',
+            self::INSUFFICIENT_STORAGE => 'Insufficient Storage',
+            self::LOOP_DETECTED => 'Loop Detected',
+            self::NOT_EXTENDED => 'Not Extended',
+            self::NETWORK_AUTHENTICATION_REQUIRED => 'Network Authentication Required',
+        };
+    }
+
+    public function translatedText(): string
+    {
+        return trans('http_status_codes.'.$this->text());
+    }
     // 1xx Informational Responses
     case CONTINUE = 100;                    // Request received, continuing process
     case SWITCHING_PROTOCOLS = 101;          // Switching protocols
@@ -77,77 +149,4 @@ enum HttpStatusCodesEnum: int
     case LOOP_DETECTED = 508;                // Loop detected (WebDAV)
     case NOT_EXTENDED = 510;                 // Not extended
     case NETWORK_AUTHENTICATION_REQUIRED = 511; // Network authentication required
-
-    public function text(): string
-    {
-        return match ($this) {
-            self::CONTINUE => 'Continue',
-            self::SWITCHING_PROTOCOLS => 'Switching Protocols',
-            self::PROCESSING => 'Processing',
-            self::EARLY_HINTS => 'Early Hints',
-            self::OK => 'OK',
-            self::CREATED => 'Created',
-            self::ACCEPTED => 'Accepted',
-            self::NON_AUTHORITATIVE_INFORMATION => 'Non-Authoritative Information',
-            self::NO_CONTENT => 'No Content',
-            self::RESET_CONTENT => 'Reset Content',
-            self::PARTIAL_CONTENT => 'Partial Content',
-            self::MULTI_STATUS => 'Multi-Status',
-            self::ALREADY_REPORTED => 'Already Reported',
-            self::IM_USED => 'I\'m Used',
-            self::MULTIPLE_CHOICES => 'Multiple Choices',
-            self::MOVED_PERMANENTLY => 'Moved Permanently',
-            self::FOUND => 'Found',
-            self::SEE_OTHER => 'See Other',
-            self::NOT_MODIFIED => 'Not Modified',
-            self::USE_PROXY => 'Use Proxy',
-            self::TEMPORARY_REDIRECT => 'Temporary Redirect',
-            self::PERMANENT_REDIRECT => 'Permanent Redirect',
-            self::BAD_REQUEST => 'Bad Request',
-            self::UNAUTHORIZED => 'Unauthorized',
-            self::PAYMENT_REQUIRED => 'Payment Required',
-            self::FORBIDDEN => 'Forbidden',
-            self::NOT_FOUND => 'Not Found',
-            self::METHOD_NOT_ALLOWED => 'Method Not Allowed',
-            self::NOT_ACCEPTABLE => 'Not Acceptable',
-            self::PROXY_AUTHENTICATION_REQUIRED => 'Proxy Authentication Required',
-            self::REQUEST_TIMEOUT => 'Request Timeout',
-            self::CONFLICT => 'Conflict',
-            self::GONE => 'Gone',
-            self::LENGTH_REQUIRED => 'Length Required',
-            self::PRECONDITION_FAILED => 'Precondition Failed',
-            self::PAYLOAD_TOO_LARGE => 'Payload Too Large',
-            self::URI_TOO_LONG => 'URI Too Long',
-            self::UNSUPPORTED_MEDIA_TYPE => 'Unsupported Media Type',
-            self::RANGE_NOT_SATISFIABLE => 'Range Not Satisfiable',
-            self::EXPECTATION_FAILED => 'Expectation Failed',
-            self::IM_A_TEAPOT => 'I\'m a teapot',
-            self::MISDIRECTED_REQUEST => 'Misdirected Request',
-            self::UNPROCESSABLE_ENTITY => 'Unprocessable Entity',
-            self::LOCKED => 'Locked',
-            self::FAILED_DEPENDENCY => 'Failed Dependency',
-            self::TOO_EARLY => 'Too Early',
-            self::UPGRADE_REQUIRED => 'Upgrade Required',
-            self::PRECONDITION_REQUIRED => 'Precondition Required',
-            self::TOO_MANY_REQUESTS => 'Too Many Requests',
-            self::REQUEST_HEADER_FIELDS_TOO_LARGE => 'Request Header Fields Too Large',
-            self::UNAVAILABLE_FOR_LEGAL_REASONS => 'Unavailable For Legal Reasons',
-            self::INTERNAL_SERVER_ERROR => 'Internal Server Error',
-            self::NOT_IMPLEMENTED => 'Not Implemented',
-            self::BAD_GATEWAY => 'Bad Gateway',
-            self::SERVICE_UNAVAILABLE => 'Service Unavailable',
-            self::GATEWAY_TIMEOUT => 'Gateway Timeout',
-            self::HTTP_VERSION_NOT_SUPPORTED => 'HTTP Version Not Supported',
-            self::VARIANT_ALSO_NEGOTIATES => 'Variant Also Negotiates',
-            self::INSUFFICIENT_STORAGE => 'Insufficient Storage',
-            self::LOOP_DETECTED => 'Loop Detected',
-            self::NOT_EXTENDED => 'Not Extended',
-            self::NETWORK_AUTHENTICATION_REQUIRED => 'Network Authentication Required',
-        };
-    }
-
-    public function translatedText(): string
-    {
-        return trans('http_status_codes.' . $this->text());
-    }
 }

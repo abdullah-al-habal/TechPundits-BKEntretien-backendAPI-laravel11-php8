@@ -138,4 +138,28 @@ return [
 
     'version' => env('APP_VERSION', '1.0.0'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | External API URL
+    |--------------------------------------------------------------------------
+    |
+    | This value is the URL of the external API that the application
+    | communicates with. It is retrieved from the environment variables.
+    |
+    */
+
+    'external_api_url' => env('EXTERNAL_API_URL'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Redis Check
+    |--------------------------------------------------------------------------
+    |
+    | This configuration option determines whether the application should
+    | perform Redis checks. It is controlled by an environment variable
+    | and defaults to false if not set.
+    |
+    */
+
+    'check_redis' => env('CHECK_REDIS', false),
 ];

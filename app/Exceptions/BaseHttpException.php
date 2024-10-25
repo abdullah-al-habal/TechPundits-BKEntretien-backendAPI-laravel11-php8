@@ -7,6 +7,7 @@ namespace App\Exceptions;
 use App\Enums\ErrorCode;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 abstract class BaseHttpException extends Exception
 {
@@ -20,7 +21,7 @@ abstract class BaseHttpException extends Exception
         parent::__construct($message, $httpStatus);
     }
 
-    public function render($request): JsonResponse
+    public function render(Request $request): JsonResponse
     {
         return response()->json([
             'message' => $this->getMessage(),

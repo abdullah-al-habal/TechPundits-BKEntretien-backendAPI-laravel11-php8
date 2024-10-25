@@ -60,7 +60,7 @@ class AppServiceProvider extends ServiceProvider
      */
     protected function validateEnvironment(): void
     {
-        if (!$this->app->environment('production')) {
+        if (! $this->app->environment('production')) {
             try {
                 EnvValidator::validate();
             } catch (RuntimeException $e) {
@@ -133,10 +133,10 @@ class AppServiceProvider extends ServiceProvider
      */
     protected function configureModels(): void
     {
-        Model::preventLazyLoading(!app()->environment('production'));
-        Model::shouldBeStrict(!app()->environment('production'));
-        Model::preventSilentlyDiscardingAttributes(!app()->environment('production'));
-        Model::preventAccessingMissingAttributes(!app()->environment('production'));
+        Model::preventLazyLoading(! app()->environment('production'));
+        Model::shouldBeStrict(! app()->environment('production'));
+        Model::preventSilentlyDiscardingAttributes(! app()->environment('production'));
+        Model::preventAccessingMissingAttributes(! app()->environment('production'));
 
         Relation::enforceMorphMap([
             // Define your morph maps here
@@ -156,8 +156,7 @@ class AppServiceProvider extends ServiceProvider
                 ->mixedCase()
                 ->numbers()
                 ->symbols()
-                ->uncompromised()
-            ;
+                ->uncompromised();
 
             return $this->app->environment('production')
                 ? $password

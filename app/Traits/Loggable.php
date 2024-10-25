@@ -12,8 +12,8 @@ trait Loggable
     /**
      * Log an informational message.
      *
-     * @param string               $message the message to log
-     * @param array<string, mixed> $context optional contextual information
+     * @param  string  $message  the message to log
+     * @param  array<string, mixed>  $context  optional contextual information
      */
     public function logInfo(string $message, array $context = []): void
     {
@@ -23,8 +23,8 @@ trait Loggable
     /**
      * Log an error message.
      *
-     * @param string               $message the message to log
-     * @param array<string, mixed> $context optional contextual information
+     * @param  string  $message  the message to log
+     * @param  array<string, mixed>  $context  optional contextual information
      */
     public function logError(string $message, array $context = []): void
     {
@@ -34,8 +34,8 @@ trait Loggable
     /**
      * Log a debug message.
      *
-     * @param string               $message the message to log
-     * @param array<string, mixed> $context optional contextual information
+     * @param  string  $message  the message to log
+     * @param  array<string, mixed>  $context  optional contextual information
      */
     public function logDebug(string $message, array $context = []): void
     {
@@ -45,8 +45,8 @@ trait Loggable
     /**
      * Log a warning message.
      *
-     * @param string               $message the message to log
-     * @param array<string, mixed> $context optional contextual information
+     * @param  string  $message  the message to log
+     * @param  array<string, mixed>  $context  optional contextual information
      */
     public function logWarning(string $message, array $context = []): void
     {
@@ -56,8 +56,8 @@ trait Loggable
     /**
      * Log a critical message.
      *
-     * @param string               $message the message to log
-     * @param array<string, mixed> $context optional contextual information
+     * @param  string  $message  the message to log
+     * @param  array<string, mixed>  $context  optional contextual information
      */
     public function logCritical(string $message, array $context = []): void
     {
@@ -67,9 +67,9 @@ trait Loggable
     /**
      * Log an exception.
      *
-     * @param Throwable            $throwable the exception to log
-     * @param string               $message   optional custom message to log
-     * @param array<string, mixed> $context   optional contextual information
+     * @param  Throwable  $throwable  the exception to log
+     * @param  string  $message  optional custom message to log
+     * @param  array<string, mixed>  $context  optional contextual information
      */
     public function logException(Throwable $throwable, string $message = '', array $context = []): void
     {

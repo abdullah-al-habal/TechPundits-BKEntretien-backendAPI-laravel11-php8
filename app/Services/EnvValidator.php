@@ -19,29 +19,26 @@ class EnvValidator
     public static function validate(): void
     {
         try {
-            // Retrieve environment variables using Laravel's env() helper
             $envData = collect(static::rules())
                 ->mapWithKeys(static fn ($rule, $key) => [$key => env($key)])
-                ->toArray()
-            ;
+                ->toArray();
 
             $validator = Validator::make($envData, static::rules(), static::messages());
 
             if ($validator->fails()) {
                 $errors = collect($validator->errors()->all())
                     ->map(static fn ($error) => "- \"{$error}\"")
-                    ->join(PHP_EOL)
-                ;
+                    ->join(PHP_EOL);
 
                 throw new RuntimeException(
-                    'Environment configuration validation failed:' . PHP_EOL . $errors
+                    'Environment configuration validation failed:'.PHP_EOL.$errors
                 );
             }
 
             static::validateAdditionalRequirements();
         } catch (ValidationException $e) {
             throw new RuntimeException(
-                'Environment validation failed: ' . $e->getMessage()
+                'Environment validation failed: '.$e->getMessage()
             );
         }
     }
@@ -166,6 +163,10 @@ class EnvValidator
             // Additional Services
             'SCOUT_DRIVER' => 'nullable|string',
             'MEMCACHED_HOST' => 'required|string',
+
+            // External API and Redis Check Settings
+            'EXTERNAL_API_URL' => 'nullable|url',
+            'CHECK_REDIS' => 'required|boolean',
         ];
     }
 
@@ -197,9 +198,9 @@ class EnvValidator
         // }
 
         // Validate database configuration
-        if ('sqlite' === env('DB_CONNECTION')) {
+        if (env('DB_CONNECTION') === 'sqlite') {
             $database = env('DB_DATABASE');
-            if (!file_exists($database) && ':memory:' !== $database) {
+            if (! file_exists($database) && $database !== ':memory:') {
                 throw new RuntimeException("SQLite database file does not exist: {$database}");
             }
         }
@@ -218,19 +219,8 @@ class EnvValidator
     protected static function validateSslConfiguration(): void
     {
         // Additional SSL checks can be implemented here
-        if (true !== env('SESSION_SECURE_COOKIE')) {
+        if (env('SESSION_SECURE_COOKIE') !== true) {
             throw new RuntimeException('SESSION_SECURE_COOKIE must be true when using HTTPS');
         }
     }
 }
-
-/**
- * Local: Throws detailed exceptions
- * APP_ENV=local
- *
- * Staging: Logs errors but continues
- * APP_ENV=staging
- *
- * Production: Skips validation
- * APP_ENV=production
- */

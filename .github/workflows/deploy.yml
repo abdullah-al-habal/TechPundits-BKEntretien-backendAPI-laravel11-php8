@@ -1,0 +1,28 @@
+name: Deploy
+on:
+  push:
+  pull_request:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Build & Deploy Assets
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
+
+      - name: Deploy
+        env:
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+          CPANEL_USERNAME: ${{ secrets.CPANEL_USERNAME }}
+        run: |
+          ssh $CPANEL_USERNAME@$SERVER_IP 'bash -s' < ${{ github.workspace }}/scripts/deploy.sh

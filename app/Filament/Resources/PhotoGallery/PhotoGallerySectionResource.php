@@ -31,8 +31,7 @@ class PhotoGallerySectionResource extends Resource
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
-            ])
-        ;
+            ]);
     }
 
     public static function table(Table $table): Table
@@ -61,8 +60,7 @@ class PhotoGallerySectionResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ])
-        ;
+            ]);
     }
 
     public static function getRelations(): array

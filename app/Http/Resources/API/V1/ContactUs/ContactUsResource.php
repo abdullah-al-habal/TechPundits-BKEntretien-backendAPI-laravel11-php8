@@ -7,8 +7,14 @@ namespace App\Http\Resources\API\V1\ContactUs;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @property-read \Illuminate\Database\Eloquent\Collection|null $sections
+ */
 class ContactUsResource extends JsonResource
 {
+    /**
+     * @return array<string, mixed>
+     */
     public function toArray(Request $request): array
     {
         return [
@@ -16,6 +22,9 @@ class ContactUsResource extends JsonResource
         ];
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function with(Request $request): array
     {
         return [

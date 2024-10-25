@@ -36,8 +36,7 @@ class PhotoGallerySectionImageResource extends Resource
                 Forms\Components\Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),
-            ])
-        ;
+            ]);
     }
 
     public static function table(Table $table): Table
@@ -70,8 +69,7 @@ class PhotoGallerySectionImageResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ])
-        ;
+            ]);
     }
 
     public static function getRelations(): array

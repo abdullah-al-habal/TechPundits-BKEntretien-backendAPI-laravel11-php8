@@ -11,7 +11,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class SiteSettingService
 {
     /**
-     * @param int $perPage Number of items per page
+     * @param  int  $perPage  Number of items per page
      *
      * @throws SiteSettingNotFoundException
      */

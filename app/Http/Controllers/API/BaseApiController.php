@@ -16,7 +16,7 @@ class BaseApiController extends Controller
     /**
      * Send a success response.
      *
-     * @param mixed $data
+     * @param  mixed  $data
      */
     protected function sendResponse(
         $data,
@@ -29,7 +29,7 @@ class BaseApiController extends Controller
             'status' => $code,
         ];
 
-        if (null !== $successCode) {
+        if ($successCode !== null) {
             $response['message'] = SuccessMessages::getMessage($successCode);
             $response['success_code'] = $successCode->value;
         }
@@ -47,7 +47,7 @@ class BaseApiController extends Controller
         null|array|string $errors = null
     ): JsonResponse {
 
-        if (null !== $errorCode) {
+        if ($errorCode !== null) {
             $message = ErrorMessages::getMessage($errorCode);
         }
 
@@ -57,11 +57,11 @@ class BaseApiController extends Controller
             'status' => $code,
         ];
 
-        if (null !== $errorCode) {
+        if ($errorCode !== null) {
             $response['error_code'] = $errorCode->value;
         }
 
-        if (null !== $errors) {
+        if ($errors !== null) {
             $response['errors'] = $errors;
         }
 

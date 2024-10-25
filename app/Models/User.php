@@ -18,20 +18,20 @@ use Laravel\Sanctum\HasApiTokens;
  *
  * This class represents a user in the application.
  *
- * @property int                             $id
- * @property string                          $name
- * @property string                          $email
+ * @property int $id
+ * @property string $name
+ * @property string $email
  * @property null|\Illuminate\Support\Carbon $email_verified_at
- * @property string                          $password
- * @property null|string                     $remember_token
- * @property null|string                     $two_factor_secret
- * @property null|array                      $two_factor_recovery_codes
+ * @property string $password
+ * @property null|string $remember_token
+ * @property null|string $two_factor_secret
+ * @property null|array $two_factor_recovery_codes
  * @property null|\Illuminate\Support\Carbon $two_factor_confirmed_at
- * @property null|array                      $settings
- * @property bool                            $is_verified
- * @property bool                            $is_admin
- * @property \Illuminate\Support\Carbon      $created_at
- * @property \Illuminate\Support\Carbon      $updated_at
+ * @property null|array $settings
+ * @property bool $is_verified
+ * @property bool $is_admin
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
  *
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
@@ -92,8 +92,8 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Enable two-factor authentication for the user.
      *
-     * @param string $secret        The two-factor authentication secret
-     * @param array  $recoveryCodes The recovery codes for two-factor authentication
+     * @param  string  $secret  The two-factor authentication secret
+     * @param  array  $recoveryCodes  The recovery codes for two-factor authentication
      */
     public function enableTwoFactorAuth(string $secret, array $recoveryCodes): void
     {

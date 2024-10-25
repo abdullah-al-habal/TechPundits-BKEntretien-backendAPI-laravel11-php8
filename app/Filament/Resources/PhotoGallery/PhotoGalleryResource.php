@@ -47,8 +47,7 @@ class PhotoGalleryResource extends Resource
                 Forms\Components\TextInput::make('main_image_text')
                     ->required()
                     ->maxLength(255),
-            ])
-        ;
+            ]);
     }
 
     public static function table(Table $table): Table
@@ -82,8 +81,7 @@ class PhotoGalleryResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ])
-        ;
+            ]);
     }
 
     public static function getRelations(): array

@@ -13,8 +13,10 @@ use App\Http\Controllers\API\V1\PhotoGallery\PhotoGalleryController;
 use App\Http\Controllers\API\V1\SiteSetting\SiteSettingController;
 use App\Http\Controllers\API\V1\Testimonial\TestimonialController;
 use App\Http\Controllers\API\V1\Unlocking\UnlockingController;
+use App\Http\Controllers\HealthCheckController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/health', HealthCheckController::class);
 Route::post(uri: '/login', action: [LoginController::class, 'login']);
 Route::post(uri: '/register', action: [RegisterController::class, 'register']);
 

@@ -66,13 +66,12 @@ class ContactUsResource extends Resource
                                         ->columnSpanFull(),
                                 ])
                                 ->defaultItems(1)
-                                ->createItemButtonLabel('Add Section'),
+                                ->addActionLabel('Add Section'),
                         ]),
                 ])
                     ->skippable()
                     ->columnSpanFull(),
-            ])
-        ;
+            ]);
     }
 
     public static function table(Table $table): Table
@@ -90,9 +89,7 @@ class ContactUsResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-
-            ])
+            ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
@@ -100,8 +97,7 @@ class ContactUsResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ])
-        ;
+            ]);
     }
 
     public static function getRelations(): array

@@ -9,21 +9,23 @@ use App\Enums\SuccessCode;
 class SuccessMessages
 {
     public static array $messages = [
-        SuccessCode::SITE_SETTINGS_RETRIEVED->value => 'Site settings have been successfully retrieved!',
-        SuccessCode::FAQS_RETRIEVED->value => 'FAQs have been successfully retrieved!',
-        SuccessCode::PHOTO_GALLERIES_RETRIEVED->value => 'Photo galleries have been successfully retrieved!',
-        SuccessCode::REGISTER_SUCCESS->value => 'You have successfully registered!',
-        SuccessCode::LOGIN_SUCCESS->value => 'You have successfully logged in!',
-        SuccessCode::LOGOUT_SUCCESS->value => 'You have successfully logged out!',
-        SuccessCode::HOME_PAGE_RETRIEVED->value => 'Home page has been successfully retrieved!',
-        SuccessCode::DRAIN_CLEANING_RETRIEVED->value => 'Drain cleaning information has been successfully retrieved!',
-        SuccessCode::CONTACT_US_RETRIEVED->value => 'Contact us information has been successfully retrieved!',
-        SuccessCode::TESTIMONIALS_RETRIEVED->value => 'Testimonials have been successfully retrieved!',
-        SuccessCode::UNLOCKINGS_RETRIEVED->value => 'Unlockings have been successfully retrieved!',
+        SuccessCode::SITE_SETTINGS_RETRIEVED->value => 'Great! We\'ve successfully loaded the site settings for you.',
+        SuccessCode::CONTACT_US_RETRIEVED->value => 'Contact information is ready for you. Need to reach out?',
+        SuccessCode::TESTIMONIALS_RETRIEVED->value => 'Check out what others are saying! Testimonials are now available.',
+        SuccessCode::PHOTO_GALLERIES_RETRIEVED->value => 'Picture perfect! The photo galleries are ready for your viewing.',
+        SuccessCode::DRAIN_CLEANING_RETRIEVED->value => 'All the drain cleaning info you need is now at your fingertips.',
+        SuccessCode::UNLOCKING_RETRIEVED->value => 'Unlocking services information is now available. Need help?',
+        SuccessCode::HOME_PAGE_RETRIEVED->value => 'Welcome! The home page is all set for you to explore.',
+        SuccessCode::FAQS_RETRIEVED->value => 'Got questions? We\'ve got answers! FAQs are now loaded.',
+        SuccessCode::LOGIN_SUCCESS->value => 'Welcome back! You\'re now logged in and ready to go.',
+        SuccessCode::LOGOUT_SUCCESS->value => 'You\'ve been safely logged out. Have a great day!',
+        SuccessCode::REGISTER_SUCCESS->value => 'Awesome! Your account has been created successfully. Welcome aboard!',
+        SuccessCode::UNLOCKINGS_RETRIEVED->value => 'Unlocking service details are ready. Locked out? We\'ve got you covered!',
+        SuccessCode::HEALTH_CHECK_COMPLETED->value => 'Good news! Our system health check is complete and everything looks great.',
     ];
 
     public static function getMessage(SuccessCode $code): string
     {
-        return self::$messages[$code->value] ?? 'The operation has been completed successfully!';
+        return self::$messages[$code->value] ?? 'Success! The operation you requested is complete.';
     }
 }

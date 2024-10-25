@@ -19,7 +19,7 @@ class AuthService
 {
     public function login(LoginDTO $loginDTO): array
     {
-        if (!Auth::attempt(credentials: ['email' => $loginDTO->email, 'password' => $loginDTO->password])) {
+        if (! Auth::attempt(credentials: ['email' => $loginDTO->email, 'password' => $loginDTO->password])) {
             throw new LoginException();
         }
 

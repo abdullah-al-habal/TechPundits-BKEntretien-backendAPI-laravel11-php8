@@ -20,13 +20,13 @@ $rules = [
     '@PHPUnit84Migration:risky' => true,
     '@PhpCsFixer' => true,
     '@PhpCsFixer:risky' => true,
-    
+
     // Arrays
     'array_syntax' => ['syntax' => 'short'],
     'no_multiline_whitespace_around_double_arrow' => true,
     'trim_array_spaces' => true,
     'whitespace_after_comma_in_array' => true,
-    
+
     // Import
     'ordered_imports' => ['sort_algorithm' => 'alpha', 'imports_order' => ['class', 'function', 'const']],
     'no_unused_imports' => true,
@@ -35,7 +35,7 @@ $rules = [
         'import_constants' => true,
         'import_functions' => true,
     ],
-    
+
     // Spacing and alignment
     'binary_operator_spaces' => true,
     'concat_space' => ['spacing' => 'one'],
@@ -48,19 +48,19 @@ $rules = [
             'use_trait',
         ],
     ],
-    
+
     // PHP 8.0+ features
     'declare_strict_types' => true,
     'nullable_type_declaration_for_default_null_value' => true,
     'void_return' => true,
     'strict_param' => true,
     'strict_comparison' => true,
-    
+
     // Type hints
     'fully_qualified_strict_types' => true,
     'no_leading_import_slash' => true,
     'no_unneeded_import_alias' => true,
-    
+
     // PHPDoc
     'phpdoc_align' => ['align' => 'vertical'],
     'phpdoc_order' => true,
@@ -73,14 +73,14 @@ $rules = [
     'phpdoc_trim_consecutive_blank_line_separation' => true,
     'phpdoc_types' => true,
     'phpdoc_var_without_name' => true,
-    
+
     // Control structures
     'no_alternative_syntax' => true,
     'no_superfluous_elseif' => true,
     'simplified_if_return' => true,
     'switch_case_semicolon_to_colon' => true,
     'switch_case_space' => true,
-    
+
     // Classes and functions
     'class_attributes_separation' => ['elements' => ['method' => 'one']],
     'no_blank_lines_after_class_opening' => true,
@@ -97,4 +97,6 @@ $rules = [
 
 return (new PhpCsFixer\Config())
     ->setRules($rules)
-    ->setFinder($finder);
+    ->setFinder($finder)
+    ->setRiskyAllowed(true)
+    ->setUsingCache(true);

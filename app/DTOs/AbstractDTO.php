@@ -11,7 +11,7 @@ abstract class AbstractDTO
     /**
      * Constructor to initialize the DTO with data.
      *
-     * @param array<string, mixed> $data
+     * @param  array<string, mixed>  $data
      */
     public function __construct(array $data = [])
     {
@@ -21,8 +21,7 @@ abstract class AbstractDTO
     /**
      * Fill the DTO properties with the provided data.
      *
-     * @param array<string, mixed> $data
-     *
+     * @param  array<string, mixed>  $data
      * @return $this
      */
     public function fill(array $data): self
@@ -47,7 +46,7 @@ abstract class AbstractDTO
     /**
      * Create a DTO from an array.
      *
-     * @param array<string, mixed> $data
+     * @param  array<string, mixed>  $data
      */
     public static function fromArray(array $data): static
     {

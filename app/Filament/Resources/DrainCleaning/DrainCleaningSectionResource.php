@@ -34,8 +34,7 @@ class DrainCleaningSectionResource extends Resource
                 Forms\Components\Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),
-            ])
-        ;
+            ]);
     }
 
     public static function table(Table $table): Table
@@ -66,8 +65,7 @@ class DrainCleaningSectionResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ])
-        ;
+            ]);
     }
 
     public static function getRelations(): array

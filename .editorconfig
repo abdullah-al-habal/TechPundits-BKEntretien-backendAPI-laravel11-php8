@@ -1,5 +1,9 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
 root = true
 
+# Unix-style newlines with a newline ending every file
 [*]
 charset = utf-8
 end_of_line = lf
@@ -8,11 +12,76 @@ indent_style = space
 insert_final_newline = true
 trim_trailing_whitespace = true
 
+# PHP files
+[*.php]
+indent_size = 4
+indent_style = space
+
+# Laravel Blade files
+[*.blade.php]
+indent_size = 2
+indent_style = space
+
+# Laravel config and route files
+[*.{config,routes}.php]
+indent_size = 4
+indent_style = space
+
+# Composer files
+[composer.json]
+indent_size = 4
+indent_style = space
+
+# Laravel-specific files
+[*.{env,env.*}]
+indent_size = 2
+indent_style = space
+
+# YAML files (for Laravel config)
+[*.{yml,yaml}]
+indent_size = 2
+indent_style = space
+
+# JavaScript files (for Laravel Mix/Vite)
+[*.{js,jsx,ts,tsx,vue}]
+indent_size = 2
+indent_style = space
+quote_type = single
+
+# CSS files
+[*.{css,scss,sass,less}]
+indent_size = 2
+indent_style = space
+
+# HTML files
+[*.html]
+indent_size = 2
+indent_style = space
+
+# JSON files
+[*.json]
+indent_size = 4
+indent_style = space
+
+# Markdown files
 [*.md]
 trim_trailing_whitespace = false
 
-[*.{yml,yaml}]
+# Shell scripts
+[*.sh]
 indent_size = 2
+end_of_line = lf
 
-[docker-compose.yml]
-indent_size = 4
+# Makefile
+[Makefile]
+indent_style = tab
+
+# Ignore vendor directory
+[vendor/**]
+indent_style = ignore
+indent_size = ignore
+
+# Ignore node_modules directory
+[node_modules/**]
+indent_style = ignore
+indent_size = ignore

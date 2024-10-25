@@ -39,8 +39,7 @@ class UserResource extends Resource
                 TextInput::make('email')
                     ->email()
                     ->required(),
-            ])
-        ;
+            ]);
     }
 
     public static function table(Tables\Table $table): Tables\Table
@@ -77,8 +76,7 @@ class UserResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ])
-        ;
+            ]);
     }
 
     public static function getRelations(): array

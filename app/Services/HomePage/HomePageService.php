@@ -16,7 +16,7 @@ class HomePageService
             'faqs',
         ])->first();
 
-        if (!$homePage) {
+        if (! $homePage) {
             throw new HomePageNotFoundException();
         }
 

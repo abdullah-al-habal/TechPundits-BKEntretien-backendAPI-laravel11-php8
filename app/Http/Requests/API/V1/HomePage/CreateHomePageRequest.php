@@ -4,27 +4,45 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\API\V1\HomePage;
 
+use App\Enums\ErrorCode;
+use App\Exceptions\ErrorMessages;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class CreateHomePageRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, array<mixed>|\Illuminate\Contracts\Validation\ValidationRule|string>
-     */
     public function rules(): array
     {
-        return [
+        return [];
+    }
 
-        ];
+    public function attributes(): array
+    {
+        return [];
+    }
+
+    public function messages(): array
+    {
+        return [];
+    }
+
+    protected function failedValidation(Validator $validator): never
+    {
+        $errors = $validator->errors()->all();
+        $response = response()->json([
+            'success' => false,
+            'message' => ErrorMessages::getMessage(ErrorCode::CREATE_HOME_PAGE_FAILED),
+            'status' => 422,
+            'error_code' => ErrorCode::CREATE_HOME_PAGE_FAILED->value,
+            'errors' => $errors,
+        ], 422);
+
+        throw new HttpResponseException($response);
     }
 }

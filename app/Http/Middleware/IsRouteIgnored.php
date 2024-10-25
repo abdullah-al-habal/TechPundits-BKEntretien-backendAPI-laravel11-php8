@@ -8,10 +8,11 @@ use App\Attributes\Ignore;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
-use ReflectionMethod;
-use Symfony\Component\HttpFoundation\Response;
 
 use function in_array;
+
+use ReflectionMethod;
+use Symfony\Component\HttpFoundation\Response;
 
 class IsRouteIgnored
 {
@@ -19,7 +20,7 @@ class IsRouteIgnored
     {
         $route = $request->route();
 
-        if (!($route instanceof Route) || $route->action['uses'] instanceof Closure) {
+        if (! ($route instanceof Route) || $route->action['uses'] instanceof Closure) {
             return $next($request);
         }
 
@@ -27,7 +28,7 @@ class IsRouteIgnored
 
         $attributes = $reflection->getAttributes(Ignore::class);
 
-        if (!empty($attributes) && in_array(config('app.env'), $attributes[0]->newInstance()->in, true)) {
+        if (! empty($attributes) && in_array(config('app.env'), $attributes[0]->newInstance()->in, true)) {
             abort(404);
         }
 

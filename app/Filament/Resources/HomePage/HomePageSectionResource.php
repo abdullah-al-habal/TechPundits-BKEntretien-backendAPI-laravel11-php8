@@ -36,8 +36,7 @@ class HomePageSectionResource extends Resource
                     ->columnSpanFull(),
                 Forms\Components\FileUpload::make('image')
                     ->required(),
-            ])
-        ;
+            ]);
     }
 
     public static function table(Table $table): Table
@@ -70,8 +69,7 @@ class HomePageSectionResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ])
-        ;
+            ]);
     }
 
     public static function getRelations(): array
