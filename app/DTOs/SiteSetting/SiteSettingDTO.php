@@ -25,7 +25,7 @@ class SiteSettingDTO
     // }
 
     /**
-     * @param array{key: string, value: string, id?: int} $data
+     * @param  array{key: string, value: string, id?: int}  $data
      */
     // public static function fromArray(array $data): self
     // {

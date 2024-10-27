@@ -25,7 +25,7 @@ class DrainCleaningDTO
     // }
 
     /**
-     * @param array{title: string, description: string, id?: int} $data
+     * @param  array{title: string, description: string, id?: int}  $data
      */
     // public static function fromArray(array $data): self
     // {

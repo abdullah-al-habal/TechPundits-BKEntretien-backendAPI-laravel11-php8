@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Exceptions;
+namespace App\Constants;
 
 use App\Enums\SuccessCode;
 
@@ -22,6 +22,7 @@ class SuccessMessages
         SuccessCode::REGISTER_SUCCESS->value => 'Awesome! Your account has been created successfully. Welcome aboard!',
         SuccessCode::UNLOCKINGS_RETRIEVED->value => 'Unlocking service details are ready. Locked out? We\'ve got you covered!',
         SuccessCode::HEALTH_CHECK_COMPLETED->value => 'Good news! Our system health check is complete and everything looks great.',
+        SuccessCode::NOTIFICATION_SENT->value => 'Great! Your notification has been sent successfully.',
     ];
 
     public static function getMessage(SuccessCode $code): string

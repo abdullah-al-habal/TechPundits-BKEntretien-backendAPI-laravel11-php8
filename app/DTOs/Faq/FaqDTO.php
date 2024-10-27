@@ -25,7 +25,7 @@ class FaqDTO
     // }
 
     /**
-     * @param array{question: string, answer: string, id?: int} $data
+     * @param  array{question: string, answer: string, id?: int}  $data
      */
     // public static function fromArray(array $data): self
     // {

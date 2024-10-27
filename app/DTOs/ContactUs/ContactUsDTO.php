@@ -19,6 +19,7 @@ class ContactUsDTO
     public static function fromRequest(CreateContactUsRequest|UpdateContactUsRequest $request): self
     {
         $validated = $request->validated();
+
         return new self(
             name: $validated['name'],
             email: $validated['email'],
@@ -28,7 +29,7 @@ class ContactUsDTO
     }
 
     /**
-     * @param array{name: string, email: string, message: string, id?: int} $data
+     * @param  array{name: string, email: string, message: string, id?: int}  $data
      */
     public static function fromArray(array $data): self
     {

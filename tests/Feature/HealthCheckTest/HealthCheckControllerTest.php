@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use App\Enums\SuccessCode;
-use App\Exceptions\SuccessMessages;
+use App\Constants\SuccessMessages;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;

@@ -19,9 +19,6 @@ class TestimonialService
             throw new TestimonialNotFoundException();
         }
 
-        // Use loadMissing to ensure all relations are loaded
-        $testimonials->loadMissing('sections');
-
         return $testimonials;
     }
 }

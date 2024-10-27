@@ -17,6 +17,7 @@ class CreateContactUsDTO
     public static function fromRequest(CreateContactUsRequest $request): self
     {
         $validated = $request->validated();
+
         return new self(
             name: $validated['name'],
             email: $validated['email'],
@@ -25,7 +26,7 @@ class CreateContactUsDTO
     }
 
     /**
-     * @param array{name: string, email: string, message: string} $data
+     * @param  array{name: string, email: string, message: string}  $data
      */
     public static function fromArray(array $data): self
     {

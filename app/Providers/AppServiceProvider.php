@@ -20,15 +20,13 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
+use Mcamara\LaravelLocalization\Traits\LoadsTranslatedCachedRoutes;
 use RuntimeException;
 
 use function sprintf;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
         // if ($this->app->environment('local')) {
@@ -37,9 +35,6 @@ class AppServiceProvider extends ServiceProvider
         // }
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
         // $this->validateEnvironment();
@@ -112,6 +107,10 @@ class AppServiceProvider extends ServiceProvider
                     json_encode($query->bindings)
                 ));
             });
+        }
+
+        if ($this->app->environment('production')) {
+            DB::prohibitDestructiveCommands();
         }
 
         // Monitor slow queries in production
@@ -193,7 +192,7 @@ class AppServiceProvider extends ServiceProvider
     {
         if ($this->app->environment('production')) {
             // Cache frequently accessed data
-            Cache::remember('app_settings', now()->addDay(), static fn () => []);
+            Cache::remember('app_settings', now()->addDay(), static fn() => []);
         }
     }
 
@@ -202,10 +201,6 @@ class AppServiceProvider extends ServiceProvider
      */
     protected function configureProduction(): void
     {
-        // Prevent destructive commands in production
-        DB::preventDestructiveMigrations();
-        DB::preventLazyLoading();
-
         // Enable HTTP/2 Server Push
         // $this->app['router']->middlewareGroup('web', [
         //     \Illuminate\Http\Middleware\AddLinkHeadersMiddleware::class,

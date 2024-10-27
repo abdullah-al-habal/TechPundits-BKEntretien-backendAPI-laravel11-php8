@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * @property-read \Illuminate\Database\Eloquent\Collection|null $sections
+ * @property null|\Illuminate\Database\Eloquent\Collection $sections
  */
 class ContactUsResource extends JsonResource
 {
@@ -18,7 +18,7 @@ class ContactUsResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'sections' => $this->when($this->relationLoaded('sections'), fn () => ContactUsSectionResource::collection($this->sections)),
+            'sections' => $this->when($this->relationLoaded('sections'), fn() => ContactUsSectionResource::collection($this->sections)),
         ];
     }
 

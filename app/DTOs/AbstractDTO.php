@@ -36,22 +36,16 @@ abstract class AbstractDTO
     }
 
     /**
-     * Create a DTO from a Request object.
+     * Factory method to create a DTO from a Request object.
      */
-    public static function fromRequest(Request $request): static
-    {
-        return new static($request->all());
-    }
+    abstract public static function fromRequest(Request $request): static;
 
     /**
-     * Create a DTO from an array.
+     * Factory method to create a DTO from an array.
      *
      * @param  array<string, mixed>  $data
      */
-    public static function fromArray(array $data): static
-    {
-        return new static($data);
-    }
+    abstract public static function fromArray(array $data): static;
 
     /**
      * Convert the DTO to an array.

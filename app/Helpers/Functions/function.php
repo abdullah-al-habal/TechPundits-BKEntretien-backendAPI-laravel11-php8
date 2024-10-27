@@ -66,9 +66,10 @@ if (! function_exists('currentRouteName')) {
     {
         $route = Request::route();
 
-        return $route?->getName() ?? '';
+        return is_object($route) ? $route->getName() ?? '' : '';
     }
 }
+
 
 if (! function_exists('isLocalhost')) {
     /**
@@ -165,9 +166,9 @@ if (! function_exists('saveFile')) {
      * @param  string  $name  The name of the file input
      * @param  string  $path  The path to save the file to
      * @param  array  $unlink  An array containing information about a file to unlink
-     * @param  string|null  $type  The type of the file (unused in this function)
+     * @param  null|string  $type  The type of the file (unused in this function)
      * @param  bool  $check  Whether to check if the file exists
-     * @return string|null The path of the saved file, or null if an error occurred
+     * @return null|string The path of the saved file, or null if an error occurred
      */
     function saveFile($file, string $name, string $path, array $unlink = [], ?string $type = null, bool $check = true): ?string
     {
@@ -182,12 +183,12 @@ if (! function_exists('saveFile')) {
                 checkIfFileExists($file, $name);
             }
             $pathFixing = str_replace('\\', '/', $path);
-            $fileName = time().Str::random(15).'.'.$file->getClientOriginalExtension();
-            $pathToSave = storage_path('app/public/'.$pathFixing);
+            $fileName = time() . Str::random(15) . '.' . $file->getClientOriginalExtension();
+            $pathToSave = storage_path('app/public/' . $pathFixing);
             $file->move($pathToSave, $fileName);
             session()->flash('success', 'save new file success');
 
-            return $pathFixing.$fileName;
+            return $pathFixing . $fileName;
         } catch (Exception $e) {
             // Return null if an error occurs
             return null;
@@ -234,14 +235,14 @@ if (! function_exists('formatErrorMessage')) {
     /**
      * Format an error message.
      *
-     * @param  string|null  $class  The class where the error occurred
-     * @param  int|null  $line  The line where the error occurred
+     * @param  null|string  $class  The class where the error occurred
+     * @param  null|int  $line  The line where the error occurred
      * @param  string  $message  The error message
      * @return string The formatted error message
      */
     function formatErrorMessage(?string $class, ?int $line, string $message): string
     {
-        return 'Oops there is something went wrong in file '.($class ?? 'Unknown').' in Line '.($line ?? 'Unknown').' Details : '.$message;
+        return 'Oops there is something went wrong in file ' . ($class ?? 'Unknown') . ' in Line ' . ($line ?? 'Unknown') . ' Details : ' . $message;
     }
 }
 
@@ -249,8 +250,8 @@ if (! function_exists('throwExceptionResponse')) {
     /**
      * Throw an exception response.
      *
-     * @param  string|null  $class  The class where the error occurred
-     * @param  int|null  $line  The line where the error occurred
+     * @param  null|string  $class  The class where the error occurred
+     * @param  null|int  $line  The line where the error occurred
      * @param  string  $message  The error message
      * @param  bool  $useMessage  Whether to use the message directly or format it
      *
@@ -308,10 +309,10 @@ if (! function_exists('saveImage')) {
     /**
      * Save an image file.
      *
-     * @param  mixed|null  $model  The model associated with the image
-     * @param  object|null  $request  The request object containing the image
-     * @param  string|null  $imageRequestName  The name of the image input in the request
-     * @return string|null The path of the saved image, or null if an error occurred
+     * @param  null|mixed  $model  The model associated with the image
+     * @param  null|object  $request  The request object containing the image
+     * @param  null|string  $imageRequestName  The name of the image input in the request
+     * @return null|string The path of the saved image, or null if an error occurred
      */
     function saveImage(mixed $model = null, ?object $request = null, ?string $imageRequestName = null): ?string
     {
@@ -335,7 +336,7 @@ if (! function_exists('deleteImage')) {
     /**
      * Delete an image file.
      *
-     * @param  string|null  $path  The path of the image to delete
+     * @param  null|string  $path  The path of the image to delete
      */
     function deleteImage(?string $path = null): void
     {

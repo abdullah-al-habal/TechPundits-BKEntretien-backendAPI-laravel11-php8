@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Requests\API\V1\SiteSetting;
 
 use App\Enums\ErrorCode;
-use App\Exceptions\ErrorMessages;
+use App\Constants\ErrorMessages;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;

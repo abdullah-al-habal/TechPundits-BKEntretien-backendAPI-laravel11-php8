@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Exceptions;
+namespace App\Constants;
 
 use App\Enums\ErrorCode;
 
@@ -32,6 +32,7 @@ class ErrorMessages
         ErrorCode::CREATE_FAQ_FAILED->value => 'There was an error creating the FAQ. Please try again or contact support.',
         ErrorCode::CREATE_UNLOCKING_FAILED->value => 'We couldn\'t create the unlocking service. Please try again or contact support.',
         ErrorCode::CREATE_DRAIN_CLEANING_FAILED->value => 'There was an error creating the drain cleaning service. Please try again or contact support.',
+        ErrorCode::NOTIFICATION_SEND_FAILED->value => 'We couldn\'t send the notification. Please check the recipient details and try again.',
     ];
 
     public static function getMessage(ErrorCode $code): string

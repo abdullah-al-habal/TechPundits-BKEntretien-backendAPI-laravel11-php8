@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Attributes\CollectedBy;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,10 +13,6 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 /**
- * User Model
- *
- * This class represents a user in the application.
- *
  * @property int $id
  * @property string $name
  * @property string $email
@@ -30,6 +25,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property null|array $settings
  * @property bool $is_verified
  * @property bool $is_admin
+ * @property null|string $fcm_token
  * @property \Illuminate\Support\Carbon $created_at
  * @property \Illuminate\Support\Carbon $updated_at
  *
@@ -39,7 +35,7 @@ use Laravel\Sanctum\HasApiTokens;
  */
 #[ScopedBy([])]
 #[ObservedBy([])]
-#[CollectedBy()]
+// #[CollectedBy()]
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
@@ -47,7 +43,6 @@ class User extends Authenticatable implements MustVerifyEmail
     use Notifiable;
 
     // Start Constants
-    // (No constants defined in this class)
     // End Constants
 
     // Start Properties
@@ -61,6 +56,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'is_admin',
+        'fcm_token',
     ];
 
     /**
@@ -75,19 +71,56 @@ class User extends Authenticatable implements MustVerifyEmail
         'two_factor_recovery_codes',
     ];
 
+
+    /**
+     * Define model validation rules
+     *
+     * @var array
+     */
+    public static array $rules = [
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:unique:users',
+        'password' => 'required|string|min:8',
+        'fcm_token' => 'nullable|string',
+    ];
+
     // End Properties
+
     // Start Relationships
-    // (No relationships defined in this class)
     // End Relationships
+
     // Start Scopes
-    // (No scopes defined in this class)
     // End Scopes
+
     // Start Accessors and Mutators
-    // (No accessors or mutators defined in this class)
+
+    /**
+     * Accessor for FCM token.
+     * This method capitalizes the `fcm_token` when retrieved.
+     *
+     * @return string|null
+     */
+    public function getFcmTokenAttribute(): ?string
+    {
+        return ucfirst($this->attributes['fcm_token'] ?? '');
+    }
+
+    /**
+     * Mutator for FCM token.
+     * This method trims and lowercases the `fcm_token` when saving.
+     *
+     * @param  string  $value
+     */
+    public function setFcmTokenAttribute(string $value): void
+    {
+        $this->attributes['fcm_token'] = strtolower(trim($value));
+    }
+
     // End Accessors and Mutators
+
     // Start Query Builder Methods
-    // (No query builder methods defined in this class)
     // End Query Builder Methods
+
     // Start Main Methods (core business logic)
     /**
      * Enable two-factor authentication for the user.
@@ -129,11 +162,11 @@ class User extends Authenticatable implements MustVerifyEmail
             'settings' => 'array',
             'is_verified' => 'boolean',
             'is_admin' => 'boolean',
+            'fcm_token' => 'string',
         ];
     }
     // End Main Methods
 
     // Start Helper Methods
-    // (No helper methods defined in this class)
     // End Helper Methods
 }

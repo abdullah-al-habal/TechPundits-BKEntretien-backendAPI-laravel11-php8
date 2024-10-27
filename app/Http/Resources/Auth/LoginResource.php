@@ -11,16 +11,24 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @OA\Schema(
  *     schema="LoginResource",
  *     type="object",
- *     title="Contact Us Information",
- *     description="Details of contact us information",
  *
- *     @OA\Property(property="name", type="string", example="John Doe"),
- *     @OA\Property(property="email", type="string", example="john@example.com"),
- *     @OA\Property(property="phone", type="string", example="(123) 456-7890"),
- *     @OA\Property(property="message", type="string", example="Hello, I have a question."),
- *     @OA\Property(property="meta", type="object",
- *         @OA\Property(property="version", type="string", example="1.0"),
- *         @OA\Property(property="api_version", type="string", example="v1")
+ *     @OA\Property(
+ *         property="data",
+ *         type="object",
+ *         @OA\Property(
+ *             property="user",
+ *             type="object",
+ *             @OA\Property(property="name", type="string"),
+ *             @OA\Property(property="email", type="string", format="email")
+ *         ),
+ *         @OA\Property(property="access_token", type="string"),
+ *         @OA\Property(property="token_type", type="string")
+ *     ),
+ *     @OA\Property(
+ *         property="meta",
+ *         type="object",
+ *         @OA\Property(property="version", type="string"),
+ *         @OA\Property(property="api_version", type="string")
  *     )
  * )
  */

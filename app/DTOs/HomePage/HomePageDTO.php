@@ -33,7 +33,7 @@ class HomePageDTO
     // }
 
     /**
-     * @param array{banner_image: string, banner_image_alt_text: string, banner_image_text: string, main_image: string, main_image_alt_text: string, main_image_text: string, id?: int} $data
+     * @param  array{banner_image: string, banner_image_alt_text: string, banner_image_text: string, main_image: string, main_image_alt_text: string, main_image_text: string, id?: int}  $data
      */
     // public static function fromArray(array $data): self
     // {

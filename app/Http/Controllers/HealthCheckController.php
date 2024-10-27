@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Constants\HealthCheckMessages;
+use App\Constants\HttpStatusCodesEnum;
 use App\Enums\ErrorCode;
 use App\Enums\SuccessCode;
+use App\Exceptions\HealthCheckException;
 use App\Http\Controllers\API\BaseApiController;
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -19,6 +22,50 @@ use function in_array;
 
 class HealthCheckController extends BaseApiController
 {
+    /**
+     * @OA\Get(
+     *     path="/api/health",
+     *     summary="Health check",
+     *     description="Check the health status of various system components",
+     *     operationId="healthCheck",
+     *     tags={"System"},
+     *
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful health check",
+     *
+     *         @OA\JsonContent(
+     *
+     *             @OA\Property(property="status", type="string", enum={"healthy", "unhealthy"}),
+     *             @OA\Property(
+     *                 property="checks",
+     *                 type="object",
+     *                 @OA\Property(property="database", type="object"),
+     *                 @OA\Property(property="cache", type="object"),
+     *                 @OA\Property(property="storage", type="object"),
+     *                 @OA\Property(property="redis", type="object"),
+     *                 @OA\Property(property="external_api", type="object")
+     *             )
+     *         )
+     *     ),
+     *
+     *     @OA\Response(
+     *         response=503,
+     *         description="Service Unavailable",
+     *
+     *         @OA\JsonContent(
+     *
+     *             @OA\Property(property="status", type="string", enum={"unhealthy"}),
+     *             @OA\Property(property="checks", type="object")
+     *         )
+     *     ),
+     *
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal Server Error"
+     *     )
+     * )
+     */
     public function __invoke(): JsonResponse
     {
         try {
@@ -38,12 +85,34 @@ class HealthCheckController extends BaseApiController
 
             $status = in_array(false, array_column($checks, 'status'), true) ? 503 : 200;
 
-            return $this->sendResponse([
-                'status' => $status === 200 ? 'healthy' : 'unhealthy',
-                'checks' => $checks,
-            ], SuccessCode::HEALTH_CHECK_COMPLETED, $status);
+            if ($status === 503) {
+                throw new HealthCheckException($checks);
+            }
+
+            return $this->successResponse(
+                [
+                    'status' => HealthCheckMessages::HEALTHY,
+                    'checks' => $checks,
+                ],
+                null,
+                $status,
+                null,
+                SuccessCode::HEALTH_CHECK_COMPLETED
+            );
+        } catch (HealthCheckException $e) {
+            return $this->errorResponse(
+                $e->getMessage(),
+                $e->getHttpStatus(),
+                ['checks' => $e->getData()],
+                $e->getErrorCode()
+            );
         } catch (Exception $e) {
-            return $this->sendError('Health check failed', 500, ErrorCode::HEALTH_CHECK_FAILED, $e->getMessage());
+            return $this->errorResponse(
+                $e->getMessage(),
+                HttpStatusCodesEnum::INTERNAL_SERVER_ERROR,
+                null,
+                ErrorCode::HEALTH_CHECK_FAILED
+            );
         }
     }
 
@@ -54,14 +123,14 @@ class HealthCheckController extends BaseApiController
 
             return [
                 'status' => true,
-                'message' => 'Database connection successful',
+                'message' => HealthCheckMessages::DATABASE_CONNECTION_SUCCESS,
             ];
         } catch (Exception $e) {
             return [
                 'status' => false,
-                'message' => 'Database connection failed',
+                'message' => HealthCheckMessages::DATABASE_CONNECTION_FAILED,
                 'error' => $e->getMessage(),
-                'solution' => 'Check database credentials and ensure the database server is running.',
+                'solution' => HealthCheckMessages::DATABASE_SOLUTION,
             ];
         }
     }
@@ -77,14 +146,14 @@ class HealthCheckController extends BaseApiController
 
             return [
                 'status' => true,
-                'message' => 'Cache is working correctly',
+                'message' => HealthCheckMessages::CACHE_WORKING,
             ];
         } catch (Exception $e) {
             return [
                 'status' => false,
-                'message' => 'Cache check failed',
+                'message' => HealthCheckMessages::CACHE_CHECK_FAILED,
                 'error' => $e->getMessage(),
-                'solution' => 'Verify cache configuration and ensure the cache service is running.',
+                'solution' => HealthCheckMessages::CACHE_SOLUTION,
             ];
         }
     }
@@ -100,14 +169,14 @@ class HealthCheckController extends BaseApiController
 
             return [
                 'status' => true,
-                'message' => 'Redis is working correctly',
+                'message' => HealthCheckMessages::REDIS_WORKING,
             ];
         } catch (Exception $e) {
             return [
                 'status' => false,
-                'message' => 'Redis check failed',
+                'message' => HealthCheckMessages::REDIS_CHECK_FAILED,
                 'error' => $e->getMessage(),
-                'solution' => 'Check Redis configuration and ensure the Redis server is running.',
+                'solution' => HealthCheckMessages::REDIS_SOLUTION,
             ];
         }
     }
@@ -124,14 +193,14 @@ class HealthCheckController extends BaseApiController
 
             return [
                 'status' => true,
-                'message' => 'File storage is working correctly',
+                'message' => HealthCheckMessages::STORAGE_WORKING,
             ];
         } catch (Exception $e) {
             return [
                 'status' => false,
-                'message' => 'File storage check failed',
+                'message' => HealthCheckMessages::STORAGE_CHECK_FAILED,
                 'error' => $e->getMessage(),
-                'solution' => 'Verify storage configuration and ensure write permissions are set correctly.',
+                'solution' => HealthCheckMessages::STORAGE_SOLUTION,
             ];
         }
     }
@@ -150,14 +219,14 @@ class HealthCheckController extends BaseApiController
 
             return [
                 'status' => true,
-                'message' => 'External API is accessible',
+                'message' => HealthCheckMessages::EXTERNAL_API_ACCESSIBLE,
             ];
         } catch (Exception $e) {
             return [
                 'status' => false,
-                'message' => 'External API check failed',
+                'message' => HealthCheckMessages::EXTERNAL_API_CHECK_FAILED,
                 'error' => $e->getMessage(),
-                'solution' => 'Verify API endpoint and check network connectivity.',
+                'solution' => HealthCheckMessages::EXTERNAL_API_SOLUTION,
             ];
         }
     }

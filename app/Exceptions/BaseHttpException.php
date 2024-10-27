@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Exceptions;
 
+use App\Constants\ErrorMessages;
 use App\Enums\ErrorCode;
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -19,6 +20,21 @@ abstract class BaseHttpException extends Exception
     ) {
         $message ??= ErrorMessages::getMessage($errorCode);
         parent::__construct($message, $httpStatus);
+    }
+
+    public function getHttpStatus(): int
+    {
+        return $this->getCode();
+    }
+
+    public function getErrorCode(): ErrorCode
+    {
+        return $this->errorCode;
+    }
+
+    public function getData(): ?array
+    {
+        return $this->data;
     }
 
     public function render(Request $request): JsonResponse

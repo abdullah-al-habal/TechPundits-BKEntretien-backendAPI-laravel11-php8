@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API\Auth;
 
+use App\Constants\HttpStatusCodesEnum;
 use App\Enums\ErrorCode;
 use App\Enums\SuccessCode;
 use App\Exceptions\API\Auth\LogoutException;
-use App\Exceptions\ErrorMessages;
+use App\Constants\ErrorMessages;
 use App\Http\Controllers\API\BaseApiController;
 use App\Http\Requests\API\Auth\LogoutRequest;
 use App\Services\Auth\AuthService;
@@ -25,15 +26,27 @@ class LogoutController extends BaseApiController
         try {
             $this->authService->logout($request->user());
 
-            return $this->sendResponse(
+            return $this->successResponse(
                 [],
-                SuccessCode::LOGOUT_SUCCESS,
-                200
+                null,
+                HttpStatusCodesEnum::OK,
+                null,
+                SuccessCode::LOGOUT_SUCCESS
             );
         } catch (LogoutException $e) {
-            return $this->sendError($e->getMessage(), $e->getCode(), ErrorCode::LOGOUT_FAILED);
+            return $this->errorResponse(
+                $e->getMessage(),
+                $e->getCode(),
+                null,
+                ErrorCode::LOGOUT_FAILED
+            );
         } catch (Exception $e) {
-            return $this->sendError(ErrorMessages::getMessage(ErrorCode::INTERNAL_SERVER_ERROR), 500, ErrorCode::INTERNAL_SERVER_ERROR);
+            return $this->errorResponse(
+                ErrorMessages::getMessage(ErrorCode::INTERNAL_SERVER_ERROR),
+                HttpStatusCodesEnum::INTERNAL_SERVER_ERROR,
+                null,
+                ErrorCode::INTERNAL_SERVER_ERROR
+            );
         }
     }
 }

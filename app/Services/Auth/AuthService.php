@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Services\Auth;
 
 use App\Constants\AuthConstants;
+use App\Contracts\AuthServiceInterface;
 use App\DTOs\Auth\LoginDTO;
 use App\DTOs\Auth\RegisterDTO;
 use App\Exceptions\API\Auth\LoginException;
@@ -15,7 +16,7 @@ use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class AuthService
+class AuthService implements AuthServiceInterface
 {
     public function login(LoginDTO $loginDTO): array
     {

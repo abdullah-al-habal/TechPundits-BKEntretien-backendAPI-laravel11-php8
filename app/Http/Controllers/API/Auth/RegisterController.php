@@ -8,13 +8,14 @@ use App\DTOs\Auth\RegisterDTO;
 use App\Enums\ErrorCode;
 use App\Enums\SuccessCode;
 use App\Exceptions\API\Auth\RegisterException;
-use App\Exceptions\ErrorMessages;
+use App\Constants\ErrorMessages;
 use App\Http\Controllers\API\BaseApiController;
 use App\Http\Requests\API\Auth\RegisterRequest;
 use App\Http\Resources\Auth\RegisterResource;
 use App\Services\Auth\AuthService;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use App\Constants\HttpStatusCodesEnum;
 
 class RegisterController extends BaseApiController
 {
@@ -28,21 +29,25 @@ class RegisterController extends BaseApiController
             $registerDTO = RegisterDTO::fromRequest(request: $request);
             $result = $this->authService->register(registerDTO: $registerDTO);
 
-            return $this->sendResponse(
-                RegisterResource::make($result),
-                SuccessCode::REGISTER_SUCCESS,
-                201
+            return $this->successResponse(
+                RegisterResource::make($result)->resolve(),
+                null,
+                HttpStatusCodesEnum::CREATED,
+                null,
+                SuccessCode::REGISTER_SUCCESS
             );
         } catch (RegisterException $e) {
-            return $this->sendError(
+            return $this->errorResponse(
                 $e->getMessage(),
                 $e->getCode(),
+                null,
                 ErrorCode::REGISTER_FAILED
             );
         } catch (Exception $e) {
-            return $this->sendError(
+            return $this->errorResponse(
                 ErrorMessages::getMessage(ErrorCode::INTERNAL_SERVER_ERROR),
-                500,
+                HttpStatusCodesEnum::INTERNAL_SERVER_ERROR,
+                null,
                 ErrorCode::INTERNAL_SERVER_ERROR
             );
         }

@@ -4,67 +4,103 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API;
 
+use App\Constants\ApiResponseTypeEnum;
+use App\Constants\HttpStatusCodesEnum;
+use App\Constants\SuccessMessages;
 use App\Enums\ErrorCode;
 use App\Enums\SuccessCode;
-use App\Exceptions\ErrorMessages;
-use App\Exceptions\SuccessMessages;
+use App\Constants\ErrorMessages;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 
+/**
+ * @OA\Info(
+ *     version="1.0.0",
+ *     title="Your API Documentation",
+ *     description="API documentation for Your Application",
+ *
+ *     @OA\Contact(
+ *         email="your-email@example.com"
+ *     )
+ * )
+ *
+ * @OA\Server(
+ *     url=L5_SWAGGER_CONST_HOST,
+ *     description="API Server"
+ * )
+ *
+ * @OA\SecurityScheme(
+ *     securityScheme="bearerAuth",
+ *     type="http",
+ *     scheme="bearer",
+ *     bearerFormat="JWT"
+ * )
+ */
 class BaseApiController extends Controller
 {
     /**
-     * Send a success response.
-     *
-     * @param  mixed  $data
+     * Success Response
      */
-    protected function sendResponse(
-        $data,
-        ?SuccessCode $successCode = null,
-        int $code = 200
+    protected function successResponse(
+        array|object $data,
+        ?string $message = null,
+        int|HttpStatusCodesEnum $httpStatusCode = HttpStatusCodesEnum::OK,
+        ?string $redirectUrl = null,
+        ?SuccessCode $successCode = null
     ): JsonResponse {
         $response = [
+            'status' => ApiResponseTypeEnum::SUCCESS->value,
             'success' => true,
+            'message' => $message ?? 'Success',
             'data' => $data,
-            'status' => $code,
         ];
+
+        if ($redirectUrl) {
+            $response['redirect_url'] = $redirectUrl;
+        }
 
         if ($successCode !== null) {
             $response['message'] = SuccessMessages::getMessage($successCode);
             $response['success_code'] = $successCode->value;
         }
 
-        return response()->json($response, $code);
+        // Convert HttpStatusCodesEnum to int if necessary
+        $statusCode = $httpStatusCode instanceof HttpStatusCodesEnum
+            ? $httpStatusCode->value
+            : $httpStatusCode;
+
+        return response()->json($response, $statusCode);
     }
 
     /**
-     * Send an error response.
+     * Error Response
      */
-    protected function sendError(
+    protected function errorResponse(
         string $message,
-        int $code = 400,
-        ?ErrorCode $errorCode = null,
-        null|array|string $errors = null
+        int|HttpStatusCodesEnum $httpStatusCode = HttpStatusCodesEnum::BAD_REQUEST,
+        ?array $errors = null,
+        ?ErrorCode $errorCode = null
     ): JsonResponse {
-
-        if ($errorCode !== null) {
-            $message = ErrorMessages::getMessage($errorCode);
-        }
-
         $response = [
+            'status' => ApiResponseTypeEnum::ERROR->value,
             'success' => false,
             'message' => $message,
-            'status' => $code,
         ];
 
-        if ($errorCode !== null) {
-            $response['error_code'] = $errorCode->value;
-        }
-
-        if ($errors !== null) {
+        if ($errors) {
             $response['errors'] = $errors;
         }
 
-        return response()->json($response, $code);
+        if ($errorCode !== null) {
+            $response['error_code'] = $errorCode->value;
+            $response['message'] = ErrorMessages::getMessage($errorCode);
+        }
+
+        // Convert HttpStatusCodesEnum to int if necessary
+        $statusCode = $httpStatusCode instanceof HttpStatusCodesEnum
+            ? $httpStatusCode->value
+            : $httpStatusCode;
+
+        return response()->json($response, $statusCode);
     }
 }

@@ -21,7 +21,7 @@ class TestimonialDTO
     // }
 
     /**
-     * @param array{id?: int} $data
+     * @param  array{id?: int}  $data
      */
     // public static function fromArray(array $data): self
     // {
