@@ -29,7 +29,8 @@ class DrainCleaningResource extends Resource
         return $form
             ->schema([
                 Forms\Components\FileUpload::make('banner_image')
-                    ->required(),
+                    ->required()
+                    ->directory('DrainCleaning/Filament/BannerImages'),
                 Forms\Components\TextInput::make('banner_image_alt_text')
                     ->required()
                     ->maxLength(255),
@@ -46,7 +47,8 @@ class DrainCleaningResource extends Resource
                     ->required()
                     ->columnSpanFull(),
                 Forms\Components\FileUpload::make('main_image')
-                    ->required(),
+                    ->required()
+                    ->directory('DrainCleaning/Filament/MainImages'),
                 Forms\Components\TextInput::make('main_image_alt_text')
                     ->required()
                     ->maxLength(255),
@@ -74,9 +76,7 @@ class DrainCleaningResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-
-            ])
+            ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
@@ -89,9 +89,7 @@ class DrainCleaningResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-
-        ];
+        return [];
     }
 
     public static function getPages(): array

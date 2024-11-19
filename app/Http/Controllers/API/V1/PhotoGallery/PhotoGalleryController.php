@@ -63,14 +63,17 @@ class PhotoGalleryController extends BaseApiController
                 $e->getMessage(),
                 $e->getCode(),
                 null,
-                ErrorCode::PHOTO_GALLERY_NOT_FOUND
+                ErrorCode::PHOTO_GALLERY_NOT_FOUND,
+                $e->getMessage()
+
             );
         } catch (Exception $e) {
             return $this->errorResponse(
                 ErrorMessages::getMessage(ErrorCode::INTERNAL_SERVER_ERROR),
                 HttpStatusCodesEnum::INTERNAL_SERVER_ERROR,
                 null,
-                ErrorCode::INTERNAL_SERVER_ERROR
+                ErrorCode::INTERNAL_SERVER_ERROR,
+                $e->getMessage()
             );
         }
     }

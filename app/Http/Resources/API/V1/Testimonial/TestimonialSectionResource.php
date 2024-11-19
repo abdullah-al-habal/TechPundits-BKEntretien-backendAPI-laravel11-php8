@@ -19,4 +19,14 @@ class TestimonialSectionResource extends JsonResource
             'description' => $this->description,
         ];
     }
+
+    public function with(Request $request): array
+    {
+        return [
+            'meta' => [
+                'version' => config('app.version', '1.0'),
+                'api_version' => 'v1',
+            ],
+        ];
+    }
 }

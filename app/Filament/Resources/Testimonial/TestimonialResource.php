@@ -29,7 +29,8 @@ class TestimonialResource extends Resource
         return $form
             ->schema([
                 Forms\Components\FileUpload::make('banner_image')
-                    ->required(),
+                    ->required()
+                    ->directory('Testimonial/Filament/BannerImages'),
                 Forms\Components\TextInput::make('banner_image_alt_text')
                     ->required()
                     ->maxLength(255),

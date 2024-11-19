@@ -29,7 +29,8 @@ class PhotoGalleryResource extends Resource
         return $form
             ->schema([
                 Forms\Components\FileUpload::make('banner_image')
-                    ->required(),
+                    ->required()
+                    ->directory('PhotoGallery/Filament/BannerImages'),
                 Forms\Components\TextInput::make('banner_image_alt_text')
                     ->required()
                     ->maxLength(255),
@@ -40,7 +41,8 @@ class PhotoGalleryResource extends Resource
                     ->required()
                     ->columnSpanFull(),
                 Forms\Components\FileUpload::make('main_image')
-                    ->required(),
+                    ->required()
+                    ->directory('PhotoGallery/Filament/MainImages'),
                 Forms\Components\TextInput::make('main_image_alt_text')
                     ->required()
                     ->maxLength(255),

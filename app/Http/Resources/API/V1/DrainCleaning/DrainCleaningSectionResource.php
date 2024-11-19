@@ -7,6 +7,10 @@ namespace App\Http\Resources\API\V1\DrainCleaning;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @property string $title
+ * @property string $description
+ */
 class DrainCleaningSectionResource extends JsonResource
 {
     /**
@@ -17,6 +21,19 @@ class DrainCleaningSectionResource extends JsonResource
         return [
             'title' => $this->title,
             'description' => $this->description,
+        ];
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function with(Request $request): array
+    {
+        return [
+            'meta' => [
+                'version' => config('app.version', '1.0'),
+                'api_version' => 'v1',
+            ],
         ];
     }
 }

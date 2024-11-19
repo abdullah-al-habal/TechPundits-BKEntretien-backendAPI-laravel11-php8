@@ -29,7 +29,8 @@ class UnlockingResource extends Resource
         return $form
             ->schema([
                 Forms\Components\FileUpload::make('banner_image')
-                    ->required(),
+                    ->required()
+                    ->directory('Unlocking/Filament/BannerImages'),
                 Forms\Components\TextInput::make('banner_image_alt_text')
                     ->required()
                     ->maxLength(255),
@@ -37,7 +38,8 @@ class UnlockingResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('main_image')
-                    ->required(),
+                    ->required()
+                    ->directory('Unlocking/Filament/MainImages'),
                 Forms\Components\TextInput::make('main_image_alt_text')
                     ->required()
                     ->maxLength(255),
@@ -66,9 +68,7 @@ class UnlockingResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-
-            ])
+            ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
@@ -81,9 +81,7 @@ class UnlockingResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-
-        ];
+        return [];
     }
 
     public static function getPages(): array

@@ -14,25 +14,22 @@ class ContactUsSeeder extends Seeder
     {
         $contactUs = ContactUs::firstOrCreate();
 
-        ContactUsSection::updateOrCreate(
-            ['contact_us_id' => $contactUs->id, 'title' => 'Get in Touch'],
+        ContactUsSection::insert([
             [
+                'contact_us_id' => $contactUs->id,
+                'title' => 'Get in Touch',
                 'description' => 'We\'re here to help with all your plumbing needs. Contact us today for expert service.',
-            ]
-        );
-
-        ContactUsSection::updateOrCreate(
-            ['contact_us_id' => $contactUs->id, 'title' => 'Our Location'],
+            ],
             [
+                'contact_us_id' => $contactUs->id,
+                'title' => 'Our Location',
                 'description' => '123 Plumber Street, Pipetown, PT 12345',
-            ]
-        );
-
-        ContactUsSection::updateOrCreate(
-            ['contact_us_id' => $contactUs->id, 'title' => 'Contact Information'],
+            ],
             [
+                'contact_us_id' => $contactUs->id,
+                'title' => 'Contact Information',
                 'description' => 'Phone: (555) 123-4567\nEmail: info@expertplumbers.com',
-            ]
-        );
+            ],
+        ]);
     }
 }

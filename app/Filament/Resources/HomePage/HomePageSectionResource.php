@@ -35,7 +35,8 @@ class HomePageSectionResource extends Resource
                     ->required()
                     ->columnSpanFull(),
                 Forms\Components\FileUpload::make('image')
-                    ->required(),
+                    ->required()
+                    ->directory('HomePageSection/Filament/Images'),
             ]);
     }
 

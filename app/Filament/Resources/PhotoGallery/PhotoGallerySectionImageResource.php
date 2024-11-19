@@ -29,7 +29,8 @@ class PhotoGallerySectionImageResource extends Resource
         return $form
             ->schema([
                 Forms\Components\FileUpload::make('image')
-                    ->required(),
+                    ->required()
+                    ->directory('PhotoGallery/Filament/SectionImages'),
                 Forms\Components\TextInput::make('alt_text')
                     ->required()
                     ->maxLength(255),
@@ -58,9 +59,7 @@ class PhotoGallerySectionImageResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-
-            ])
+            ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
@@ -74,9 +73,7 @@ class PhotoGallerySectionImageResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-
-        ];
+        return [];
     }
 
     public static function getPages(): array

@@ -16,7 +16,30 @@ class PhotoGallerySectionResource extends JsonResource
     {
         return [
             'title' => $this->title,
-            'images' => $this->when($this->relationLoaded('images'), fn () => PhotoGallerySectionImageResource::collection($this->images)),
+            'images' => $this->when($this->relationLoaded('images'), function () {
+                return PhotoGallerySectionImageResource::collection($this->images)->map(function ($image) {
+                    return $this->getFullUrl($image->image); // Change 'path' to 'image'
+                });
+            }, []),
         ];
+    }
+
+    /**
+     * Generate the full URL for the given image.
+     *
+     * @param string|null $image
+     * @return string|null
+     */
+    private function getFullUrl(?string $image): ?string
+    {
+        if (!$image) {
+            return null;
+        }
+
+        $appUrl = config('app.url', env('APP_URL', 'http://localhost'));
+
+        return filter_var($image, FILTER_VALIDATE_URL) !== false
+            ? $image
+            : $appUrl . '/storage/' . ltrim($image, '/');
     }
 }

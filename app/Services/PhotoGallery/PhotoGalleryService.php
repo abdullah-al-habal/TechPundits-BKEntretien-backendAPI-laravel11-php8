@@ -14,7 +14,9 @@ class PhotoGalleryService
     {
         $photoGalleries = PhotoGallery::with([
             'sections' => static function ($query): void {
-                $query->with('images');
+                $query->with(['images' => function ($query) {
+                    $query->select('id', 'photo_gallery_section_id', 'image'); // Ensure 'image' is selected
+                }]);
             },
         ])->paginate(perPage: $perPage);
 

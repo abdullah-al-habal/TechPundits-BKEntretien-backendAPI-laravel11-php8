@@ -79,7 +79,8 @@ class BaseApiController extends Controller
         string $message,
         int|HttpStatusCodesEnum $httpStatusCode = HttpStatusCodesEnum::BAD_REQUEST,
         ?array $errors = null,
-        ?ErrorCode $errorCode = null
+        ?ErrorCode $errorCode = null,
+        ?string $actualErrorMessage = null // New parameter for actual error message
     ): JsonResponse {
         $response = [
             'status' => ApiResponseTypeEnum::ERROR->value,
@@ -94,6 +95,11 @@ class BaseApiController extends Controller
         if ($errorCode !== null) {
             $response['error_code'] = $errorCode->value;
             $response['message'] = ErrorMessages::getMessage($errorCode);
+        }
+
+        // Include the actual error message if provided
+        if ($actualErrorMessage) {
+            $response['actual_error_message'] = $actualErrorMessage; // Add actual error message to response
         }
 
         // Convert HttpStatusCodesEnum to int if necessary

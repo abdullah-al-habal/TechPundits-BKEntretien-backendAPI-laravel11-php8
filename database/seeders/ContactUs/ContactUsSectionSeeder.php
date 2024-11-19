@@ -14,25 +14,22 @@ class ContactUsSectionSeeder extends Seeder
     {
         $contactUs = ContactUs::firstOrCreate();
 
-        ContactUsSection::updateOrCreate(
-            ['contact_us_id' => $contactUs->id, 'title' => 'Our Services'],
+        ContactUsSection::insert([
             [
+                'contact_us_id' => $contactUs->id,
+                'title' => 'Our Services',
                 'description' => 'We offer a wide range of plumbing services including repairs, installations, and maintenance for both residential and commercial properties.',
-            ]
-        );
-
-        ContactUsSection::updateOrCreate(
-            ['contact_us_id' => $contactUs->id, 'title' => 'Business Hours'],
+            ],
             [
+                'contact_us_id' => $contactUs->id,
+                'title' => 'Business Hours',
                 'description' => 'Monday - Friday: 8:00 AM - 6:00 PM\nSaturday: 9:00 AM - 2:00 PM\nSunday: Closed\nEmergency services available 24/7',
-            ]
-        );
-
-        ContactUsSection::updateOrCreate(
-            ['contact_us_id' => $contactUs->id, 'title' => 'Service Areas'],
+            ],
             [
+                'contact_us_id' => $contactUs->id,
+                'title' => 'Service Areas',
                 'description' => 'We proudly serve Pipetown and surrounding areas within a 50-mile radius. Call us to check if we cover your location.',
-            ]
-        );
+            ],
+        ]);
     }
 }

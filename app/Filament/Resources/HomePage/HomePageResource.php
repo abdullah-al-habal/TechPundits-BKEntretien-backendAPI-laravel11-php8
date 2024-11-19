@@ -30,7 +30,8 @@ class HomePageResource extends Resource
         return $form
             ->schema([
                 Forms\Components\FileUpload::make('banner_image')
-                    ->required(),
+                    ->required()
+                    ->directory('HomePage/Filament/BannerImages'),
                 Forms\Components\TextInput::make('banner_image_alt_text')
                     ->required()
                     ->maxLength(255),
@@ -38,7 +39,8 @@ class HomePageResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('main_image')
-                    ->required(),
+                    ->required()
+                    ->directory('HomePage/Filament/MainImages'),
                 Forms\Components\TextInput::make('main_image_alt_text')
                     ->required()
                     ->maxLength(255),

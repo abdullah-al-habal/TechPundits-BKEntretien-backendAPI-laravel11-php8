@@ -14,25 +14,22 @@ class TestimonialSeeder extends Seeder
     {
         $testimonial = Testimonial::firstOrCreate();
 
-        TestimonialSection::updateOrCreate(
-            ['testimonial_id' => $testimonial->id, 'title' => 'Satisfied Customer'],
+        TestimonialSection::insert([
             [
+                'testimonial_id' => $testimonial->id, 
+                'title' => 'Satisfied Customer',
                 'description' => 'Expert Plumbers provided excellent service. They were prompt, professional, and solved our plumbing issue quickly. - John Doe',
-            ]
-        );
-
-        TestimonialSection::updateOrCreate(
-            ['testimonial_id' => $testimonial->id, 'title' => 'Great Experience'],
+            ],
             [
+                'testimonial_id' => $testimonial->id, 
+                'title' => 'Great Experience',
                 'description' => 'I highly recommend Expert Plumbers. Their team was knowledgeable and courteous. They did a fantastic job! - Jane Smith',
-            ]
-        );
-
-        TestimonialSection::updateOrCreate(
-            ['testimonial_id' => $testimonial->id, 'title' => 'Reliable Service'],
+            ],
             [
+                'testimonial_id' => $testimonial->id, 
+                'title' => 'Reliable Service',
                 'description' => "Expert Plumbers are my go-to for all plumbing needs. They're reliable, efficient, and always deliver quality work. - Mike Johnson",
-            ]
-        );
+            ],
+        ]);
     }
 }

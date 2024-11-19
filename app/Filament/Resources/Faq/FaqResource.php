@@ -29,7 +29,8 @@ class FaqResource extends Resource
         return $form
             ->schema([
                 Forms\Components\FileUpload::make('image')
-                    ->required(),
+                    ->required()
+                    ->directory('Faq/Filament/Images'),
                 Forms\Components\TextInput::make('question')
                     ->required()
                     ->maxLength(255),
