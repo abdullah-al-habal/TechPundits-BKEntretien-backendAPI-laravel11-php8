@@ -66,14 +66,16 @@ class ContactUsController extends BaseApiController
                 $e->getMessage(),
                 HttpStatusCodesEnum::NOT_FOUND,
                 null,
-                ErrorCode::CONTACT_US_NOT_FOUND
+                ErrorCode::CONTACT_US_NOT_FOUND,
+                $e->getMessage()
             );
         } catch (Exception $e) {
             return $this->errorResponse(
                 ErrorMessages::getMessage(ErrorCode::INTERNAL_SERVER_ERROR),
                 HttpStatusCodesEnum::INTERNAL_SERVER_ERROR,
                 null,
-                ErrorCode::INTERNAL_SERVER_ERROR
+                ErrorCode::INTERNAL_SERVER_ERROR,
+                $e->getMessage()
             );
         }
     }
