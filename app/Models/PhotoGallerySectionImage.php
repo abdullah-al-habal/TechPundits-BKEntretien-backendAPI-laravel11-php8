@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class PhotoGallerySectionImage extends Model
 {
     protected $fillable = [
+        'photo_gallery_section_id',
         'image',
         'alt_text',
         'description',

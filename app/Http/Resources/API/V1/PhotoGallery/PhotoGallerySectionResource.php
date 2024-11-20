@@ -16,11 +16,7 @@ class PhotoGallerySectionResource extends JsonResource
     {
         return [
             'title' => $this->title,
-            'images' => $this->when($this->relationLoaded('images'), function () {
-                return PhotoGallerySectionImageResource::collection($this->images)->map(function ($image) {
-                    return $this->getFullUrl($image->image); // Change 'path' to 'image'
-                });
-            }, []),
+            'images' => $this->when($this->relationLoaded('images'), fn() => PhotoGallerySectionImageResource::collection($this->images)),
         ];
     }
 
