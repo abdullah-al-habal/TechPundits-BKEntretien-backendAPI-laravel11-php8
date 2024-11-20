@@ -74,8 +74,11 @@ class SiteSettingController extends BaseApiController
         try {
             $settings = $this->siteSettingService->getAllSettings();
 
+            // Aggregate settings into a single array
+            $settingsArray = $settings->pluck('value', 'key')->toArray();
+
             return $this->successResponse(
-                SiteSettingResource::collection($settings)->resolve(),
+                $settingsArray,
                 null,
                 HttpStatusCodesEnum::OK,
                 null,

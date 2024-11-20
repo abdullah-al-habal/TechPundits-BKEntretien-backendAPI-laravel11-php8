@@ -20,5 +20,4 @@ Route::prefix('v1')->group(function (): void {
     require __DIR__ . '/home-page.php';
 
     require __DIR__ . '/faqs.php';
-    // require __DIR__ . '/notifications.php';
 });

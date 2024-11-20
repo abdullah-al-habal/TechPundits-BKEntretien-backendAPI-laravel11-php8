@@ -6,6 +6,7 @@ namespace App\Services\SiteSetting;
 
 use App\Exceptions\API\V1\SiteSetting\SiteSettingNotFoundException;
 use App\Models\SiteSetting;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class SiteSettingService
@@ -15,10 +16,9 @@ class SiteSettingService
      *
      * @throws SiteSettingNotFoundException
      */
-    public function getAllSettings(int $perPage = 15): LengthAwarePaginator
+    public function getAllSettings(): Collection
     {
-        /** @var LengthAwarePaginator $settings */
-        $settings = SiteSetting::paginate(perPage: $perPage);
+        $settings = SiteSetting::all(['key', 'value']);
 
         if ($settings->isEmpty()) {
             throw new SiteSettingNotFoundException();

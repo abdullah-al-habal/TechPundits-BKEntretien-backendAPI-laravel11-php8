@@ -15,7 +15,13 @@ class TestimonialResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'sections' => $this->when($this->relationLoaded('sections'), fn () => TestimonialSectionResource::collection($this->sections)),
+            'banner_image' => $this->getFullUrl($this->banner_image),
+            'banner_image_alt_text' => $this->banner_image_alt_text,
+            'banner_image_text' => $this->banner_image_text,
+            'main_image' => $this->getFullUrl($this->main_image),
+            'main_image_alt_text' => $this->main_image_alt_text,
+            'main_image_text' => $this->main_image_text,
+            'sections' => $this->when($this->relationLoaded('sections'), fn() => TestimonialSectionResource::collection($this->sections)),
         ];
     }
 

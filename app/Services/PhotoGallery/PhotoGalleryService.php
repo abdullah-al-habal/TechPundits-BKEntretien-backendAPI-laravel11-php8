@@ -15,7 +15,7 @@ class PhotoGalleryService
         $photoGalleries = PhotoGallery::with([
             'sections' => static function ($query): void {
                 $query->with(['images' => function ($query) {
-                    $query->select('id', 'photo_gallery_section_id', 'image', 'alt_text', 'description'); // Ensure 'alt_text' is selected
+                    $query->select('id', 'photo_gallery_section_id', 'image', 'alt_text', 'description');
                 }]);
             },
         ])->paginate(perPage: $perPage);

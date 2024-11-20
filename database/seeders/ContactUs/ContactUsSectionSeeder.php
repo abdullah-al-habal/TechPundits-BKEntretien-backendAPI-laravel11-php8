@@ -12,8 +12,17 @@ class ContactUsSectionSeeder extends Seeder
 {
     public function run(): void
     {
-        $contactUs = ContactUs::firstOrCreate();
+        // Create a contact us instance
+        $contactUs = ContactUs::firstOrCreate([
+            'banner_image' => 'path/to/banner_image.jpg',
+            'banner_image_alt_text' => 'Banner Image Alt Text',
+            'banner_image_text' => 'Banner Image Description',
+            'main_image' => 'path/to/main_image.jpg',
+            'main_image_alt_text' => 'Main Image Alt Text',
+            'main_image_text' => 'Main Image Description',
+        ]);
 
+        // Insert sections related to contact us
         ContactUsSection::insert([
             [
                 'contact_us_id' => $contactUs->id,

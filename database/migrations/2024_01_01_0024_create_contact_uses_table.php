@@ -12,6 +12,12 @@ return new class() extends Migration
     {
         Schema::create('contact_uses', static function (Blueprint $table): void {
             $table->id();
+            $table->string('banner_image');
+            $table->string('banner_image_alt_text');
+            $table->text('banner_image_text');
+            $table->string('main_image');
+            $table->string('main_image_alt_text');
+            $table->text('main_image_text');
             $table->timestamps();
         });
     }
