@@ -14,11 +14,12 @@ use App\Http\Resources\API\V1\HomePage\HomePageResource;
 use App\Services\HomePage\HomePageService;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 
 class HomePageController extends BaseApiController
 {
     public function __construct(
-        private readonly HomePageService $homePageService
+        private readonly HomePageService $homePageService,
     ) {}
 
     /**
@@ -28,28 +29,19 @@ class HomePageController extends BaseApiController
      *     description="Retrieve the home page data",
      *     operationId="getHomePage",
      *     tags={"Home Page"},
-     *
      *     @OA\Response(
      *         response=200,
      *         description="Successful operation",
-     *
      *         @OA\JsonContent(ref="#/components/schemas/HomePageResource")
      *     ),
-     *
-     *     @OA\Response(
-     *         response=404,
-     *         description="Home page not found"
-     *     ),
-     *     @OA\Response(
-     *         response=500,
-     *         description="Internal server error"
-     *     )
+     *     @OA\Response(response=404, description="Home page not found"),
+     *     @OA\Response(response=500, description="Internal server error")
      * )
      */
-    public function index(): JsonResponse
+    public function getHomePageData(): JsonResponse
     {
         try {
-            $homePage = $this->homePageService->getHomePage();
+            $homePage = $this->homePageService->fetchHomePageData();
 
             return $this->successResponse(
                 new HomePageResource($homePage),
@@ -59,18 +51,22 @@ class HomePageController extends BaseApiController
                 SuccessCode::HOME_PAGE_RETRIEVED
             );
         } catch (HomePageNotFoundException $e) {
+            Log::warning('HomePage not found: ' . $e->getMessage());
             return $this->errorResponse(
                 $e->getMessage(),
-                $e->getCode(),
+                HttpStatusCodesEnum::NOT_FOUND,
                 null,
-                ErrorCode::HOME_PAGE_NOT_FOUND
+                ErrorCode::HOME_PAGE_NOT_FOUND,
+                $e->getMessage()
             );
         } catch (Exception $e) {
+            Log::error('Error retrieving home page: ' . $e->getMessage());
             return $this->errorResponse(
                 ErrorMessages::getMessage(ErrorCode::INTERNAL_SERVER_ERROR),
                 HttpStatusCodesEnum::INTERNAL_SERVER_ERROR,
                 null,
-                ErrorCode::INTERNAL_SERVER_ERROR
+                ErrorCode::INTERNAL_SERVER_ERROR,
+                $e->getMessage()
             );
         }
     }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Resources\API\V1\HomePage;
 
+use App\Http\Resources\API\V1\PhotoGallery\PhotoGallerySectionImageResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -21,9 +22,16 @@ class HomePageResource extends JsonResource
             'main_image' => $this->getFullUrl($this->main_image),
             'main_image_alt_text' => $this->main_image_alt_text,
             'main_image_text' => $this->main_image_text,
-            'sections' => $this->when($this->relationLoaded('sections'), fn () => HomePageSectionResource::collection($this->sections)),
+            'sections' => $this->when(
+                $this->relationLoaded('sections'),
+                fn() => HomePageSectionResource::collection($this->sections)
+            ),
+            'gallery_images' => PhotoGallerySectionImageResource::collection(
+                $this->gallery_images ?? []
+            ),
         ];
     }
+
 
     /**
      * Generate the full URL for the given path.
@@ -50,6 +58,7 @@ class HomePageResource extends JsonResource
             'meta' => [
                 'version' => config('app.version', '1.0'),
                 'api_version' => 'v1',
+                'timestamp' => now()->toISOString(),
             ],
         ];
     }
