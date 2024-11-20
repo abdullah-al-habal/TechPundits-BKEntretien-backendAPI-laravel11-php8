@@ -21,7 +21,7 @@ class UnlockingResource extends JsonResource
             'main_image' => $this->getFullUrl($this->main_image),
             'main_image_alt_text' => $this->main_image_alt_text,
             'main_image_text' => $this->main_image_text,
-            'sections' => $this->when($this->relationLoaded('sections'), fn () => UnlockingSectionResource::collection($this->sections)),
+            'sections' => $this->when($this->relationLoaded('sections'), fn() => UnlockingSectionResource::collection($this->sections)),
         ];
     }
 

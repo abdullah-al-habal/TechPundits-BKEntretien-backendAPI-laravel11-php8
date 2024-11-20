@@ -15,7 +15,7 @@ class AdminUserSeeder extends Seeder
     {
         UserFactory::new()->create(attributes: [
             'name' => 'Admin',
-            'email' => 'admin@admin.com',
+            'email' => 'c',
             'email_verified_at' => now(),
             'password' => Hash::make('admin123'),
             'remember_token' => Str::random(length: 10),
