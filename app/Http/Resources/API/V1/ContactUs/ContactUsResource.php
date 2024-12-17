@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Resources\API\V1\ContactUs;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
@@ -27,7 +28,7 @@ class ContactUsResource extends JsonResource
             'main_image' => $this->getFullUrl($this->main_image),
             'main_image_alt_text' => $this->main_image_alt_text,
             'main_image_text' => $this->main_image_text,
-            'sections' => $this->when($this->relationLoaded('sections'), fn() => ContactUsSectionResource::collection($this->sections)),
+            'sections' => $this->when($this->relationLoaded('sections'), fn(): AnonymousResourceCollection => ContactUsSectionResource::collection($this->sections)),
         ];
     }
 

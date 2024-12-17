@@ -38,15 +38,24 @@ class ContactUsResource extends Resource
                 Wizard::make([
                     Wizard\Step::make('Basic Information')
                         ->schema([
-                            Forms\Components\TextInput::make('id')
-                                ->disabled()
-                                ->label('ID'),
-                            Forms\Components\DateTimePicker::make('created_at')
-                                ->disabled()
-                                ->label('Created At'),
-                            Forms\Components\DateTimePicker::make('updated_at')
-                                ->disabled()
-                                ->label('Updated At'),
+                            Forms\Components\FileUpload::make('banner_image')
+                                ->required()
+                                ->directory('ContactUs/Filament/BannerImages'),
+                            Forms\Components\TextInput::make('banner_image_alt_text')
+                                ->required()
+                                ->maxLength(255),
+                            Forms\Components\TextInput::make('banner_image_text')
+                                ->required()
+                                ->maxLength(255),
+                            Forms\Components\FileUpload::make('main_image')
+                                ->required()
+                                ->directory('ContactUs/Filament/MainImages'),
+                            Forms\Components\TextInput::make('main_image_alt_text')
+                                ->required()
+                                ->maxLength(255),
+                            Forms\Components\TextInput::make('main_image_text')
+                                ->required()
+                                ->maxLength(255),
                         ]),
                     Wizard\Step::make('Sections')
                         ->schema([
