@@ -53,7 +53,10 @@ class ContactUsResource extends Resource
                             Forms\Components\TextInput::make('main_image_alt_text')
                                 ->required()
                                 ->maxLength(255),
-                            Forms\Components\TextInput::make('main_image_text')
+                            Forms\Components\TextInput::make('first_description')
+                                ->required()
+                                ->maxLength(255),
+                            Forms\Components\TextInput::make('second_description')
                                 ->required()
                                 ->maxLength(255),
                         ]),

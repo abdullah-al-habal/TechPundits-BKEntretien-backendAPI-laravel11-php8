@@ -19,7 +19,8 @@ class ContactUsSectionSeeder extends Seeder
             'banner_image_text' => 'Banner Image Description',
             'main_image' => 'path/to/main_image.jpg',
             'main_image_alt_text' => 'Main Image Alt Text',
-            'main_image_text' => 'Main Image Description',
+            'first_description' => 'First Description',
+            'second_description' => 'Second Description',
         ]);
 
         // Insert sections related to contact us

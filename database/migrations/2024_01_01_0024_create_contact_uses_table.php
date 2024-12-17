@@ -17,7 +17,8 @@ return new class() extends Migration
             $table->text('banner_image_text');
             $table->string('main_image');
             $table->string('main_image_alt_text');
-            $table->text('main_image_text');
+            $table->text('first_description');
+            $table->text('second_description');
             $table->timestamps();
         });
     }

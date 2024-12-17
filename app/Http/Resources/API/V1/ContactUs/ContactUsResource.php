@@ -27,12 +27,13 @@ class ContactUsResource extends JsonResource
             'banner_image_text' => $this->banner_image_text,
             'main_image' => $this->getFullUrl($this->main_image),
             'main_image_alt_text' => $this->main_image_alt_text,
-            'main_image_text' => $this->main_image_text,
+            'first_description' => $this->first_description,
+            'second_description' => $this->second_description,
             'sections' => $this->when($this->relationLoaded('sections'), fn(): AnonymousResourceCollection => ContactUsSectionResource::collection($this->sections)),
         ];
     }
 
-
+    
 
     /**
      * Generate the full URL for the given path.
