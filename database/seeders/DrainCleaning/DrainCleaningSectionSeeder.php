@@ -15,23 +15,23 @@ class DrainCleaningSectionSeeder extends Seeder
         $drainCleaning = DrainCleaning::firstOrCreate();
 
         DrainCleaningSection::updateOrCreate(
-            ['drain_cleaning_id' => $drainCleaning->id, 'title' => 'Professional Drain Cleaning'],
+            ['drain_cleaning_id' => $drainCleaning->id, 'title' => 'Nettoyage Professionnel des Drains'],
             [
-                'description' => 'Our expert technicians use state-of-the-art equipment to clear even the toughest clogs and keep your drains flowing smoothly.',
+                'description' => 'Nos techniciens experts utilisent un équipement de pointe pour éliminer même les bouchons les plus tenaces et garantir que vos drains fonctionnent parfaitement.',
             ]
         );
 
         DrainCleaningSection::updateOrCreate(
-            ['drain_cleaning_id' => $drainCleaning->id, 'title' => 'Common Drain Issues'],
+            ['drain_cleaning_id' => $drainCleaning->id, 'title' => 'Problèmes Courants de Drain'],
             [
-                'description' => 'We handle a variety of drain problems including slow drains, complete blockages, foul odors, and recurring clogs in sinks, showers, and toilets.',
+                'description' => 'Nous traitons divers problèmes de drains, y compris les drains lents, les obstructions complètes, les mauvaises odeurs et les bouchons récurrents dans les éviers, les douches et les toilettes.',
             ]
         );
 
         DrainCleaningSection::updateOrCreate(
-            ['drain_cleaning_id' => $drainCleaning->id, 'title' => 'Preventive Maintenance'],
+            ['drain_cleaning_id' => $drainCleaning->id, 'title' => 'Entretien Préventif'],
             [
-                'description' => 'Regular drain cleaning can prevent costly repairs and extend the life of your plumbing system. Ask about our maintenance plans.',
+                'description' => 'Un nettoyage régulier des drains peut prévenir des réparations coûteuses et prolonger la durée de vie de votre système de plomberie. Demandez-nous des informations sur nos plans de maintenance.',
             ]
         );
     }

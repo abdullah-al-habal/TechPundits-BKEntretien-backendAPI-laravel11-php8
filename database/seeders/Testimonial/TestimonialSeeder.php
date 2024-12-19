@@ -12,32 +12,32 @@ class TestimonialSeeder extends Seeder
 {
     public function run(): void
     {
-        // Create a testimonial instance
+        // Créer une instance de témoignage
         $testimonial = Testimonial::firstOrCreate([
-            'banner_image' => 'path/to/banner_image.jpg',
-            'banner_image_alt_text' => 'Banner Image Alt Text',
-            'banner_image_text' => 'Banner Image Description',
-            'main_image' => 'path/to/main_image.jpg',
-            'main_image_alt_text' => 'Main Image Alt Text',
-            'main_image_text' => 'Main Image Description',
+            'banner_image' => 'chemin/vers/banner_image.jpg',
+            'banner_image_alt_text' => 'Texte alternatif de l\'image de la bannière',
+            'banner_image_text' => 'Description de l\'image de la bannière',
+            'main_image' => 'chemin/vers/main_image.jpg',
+            'main_image_alt_text' => 'Texte alternatif de l\'image principale',
+            'main_image_text' => 'Description de l\'image principale',
         ]);
 
-        // Insert sections related to the testimonial
+        // Insérer des sections liées au témoignage
         TestimonialSection::insert([
             [
                 'testimonial_id' => $testimonial->id,
-                'title' => 'Satisfied Customer',
-                'description' => 'Expert Plumbers provided excellent service. They were prompt, professional, and solved our plumbing issue quickly. - John Doe',
+                'title' => 'Client Satisfait',
+                'description' => 'Plombiers Experts ont fourni un excellent service. Ils étaient rapides, professionnels et ont résolu notre problème de plomberie rapidement. - John Doe',
             ],
             [
                 'testimonial_id' => $testimonial->id,
-                'title' => 'Great Experience',
-                'description' => 'I highly recommend Expert Plumbers. Their team was knowledgeable and courteous. They did a fantastic job! - Jane Smith',
+                'title' => 'Super Expérience',
+                'description' => 'Je recommande vivement Plombiers Experts. Leur équipe était compétente et courtoise. Ils ont fait un excellent travail! - Jane Smith',
             ],
             [
                 'testimonial_id' => $testimonial->id,
-                'title' => 'Reliable Service',
-                'description' => "Expert Plumbers are my go-to for all plumbing needs. They're reliable, efficient, and always deliver quality work. - Mike Johnson",
+                'title' => 'Service Fiable',
+                'description' => "Plombiers Experts sont mes références pour tous les besoins en plomberie. Ils sont fiables, efficaces et toujours fournissent un travail de qualité. - Mike Johnson",
             ],
         ]);
     }

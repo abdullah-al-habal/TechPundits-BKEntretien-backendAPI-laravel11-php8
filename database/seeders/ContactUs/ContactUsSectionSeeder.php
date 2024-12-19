@@ -12,33 +12,33 @@ class ContactUsSectionSeeder extends Seeder
 {
     public function run(): void
     {
-        // Create a contact us instance
+        // Créer une instance Contactez-nous
         $contactUs = ContactUs::firstOrCreate([
-            'banner_image' => 'path/to/banner_image.jpg',
-            'banner_image_alt_text' => 'Banner Image Alt Text',
-            'banner_image_text' => 'Banner Image Description',
-            'main_image' => 'path/to/main_image.jpg',
-            'main_image_alt_text' => 'Main Image Alt Text',
-            'first_description' => 'First Description',
-            'second_description' => 'Second Description',
+            'banner_image' => 'chemin/vers/banner_image.jpg',
+            'banner_image_alt_text' => "Texte alternatif de l'image de la bannière",
+            'banner_image_text' => 'Description de l\'image de la bannière',
+            'main_image' => 'chemin/vers/main_image.jpg',
+            'main_image_alt_text' => 'Texte alternatif de l\'image principale',
+            'first_description' => 'Première description',
+            'second_description' => 'Deuxième description',
         ]);
 
-        // Insert sections related to contact us
+        // Insérer les sections liées à Contactez-nous
         ContactUsSection::insert([
             [
                 'contact_us_id' => $contactUs->id,
-                'title' => 'Our Services',
-                'description' => 'We offer a wide range of plumbing services including repairs, installations, and maintenance for both residential and commercial properties.',
+                'title' => 'Nos Services',
+                'description' => 'Nous proposons une large gamme de services de plomberie, y compris les réparations, les installations et la maintenance pour les propriétés résidentielles et commerciales.',
             ],
             [
                 'contact_us_id' => $contactUs->id,
-                'title' => 'Business Hours',
-                'description' => 'Monday - Friday: 8:00 AM - 6:00 PM\nSaturday: 9:00 AM - 2:00 PM\nSunday: Closed\nEmergency services available 24/7',
+                'title' => 'Horaires',
+                'description' => 'Lundi - Vendredi : 8h00 - 18h00\nSamedi : 9h00 - 14h00\nDimanche : Fermé\nServices d\'urgence disponibles 24h/24 et 7j/7',
             ],
             [
                 'contact_us_id' => $contactUs->id,
-                'title' => 'Service Areas',
-                'description' => 'We proudly serve Pipetown and surrounding areas within a 50-mile radius. Call us to check if we cover your location.',
+                'title' => 'Zones de Service',
+                'description' => 'Nous sommes fiers de servir Pipetown et les environs dans un rayon de 80 kilomètres. Appelez-nous pour vérifier si nous couvrons votre emplacement.',
             ],
         ]);
     }

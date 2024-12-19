@@ -15,22 +15,22 @@ class PhotoGallerySectionSeeder extends Seeder
         $photoGallery = PhotoGallery::firstOrCreate();
 
         PhotoGallerySection::updateOrCreate(
-            ['photo_gallery_id' => $photoGallery->id, 'title' => 'Kitchen Plumbing'],
+            ['photo_gallery_id' => $photoGallery->id, 'title' => 'Plomberie de Cuisine'],
             []
         );
 
         PhotoGallerySection::updateOrCreate(
-            ['photo_gallery_id' => $photoGallery->id, 'title' => 'Bathroom Renovations'],
+            ['photo_gallery_id' => $photoGallery->id, 'title' => 'Rénovations de Salle de Bain'],
             []
         );
 
         PhotoGallerySection::updateOrCreate(
-            ['photo_gallery_id' => $photoGallery->id, 'title' => 'Emergency Repairs'],
+            ['photo_gallery_id' => $photoGallery->id, 'title' => 'Réparations d\'Urgence'],
             []
         );
 
         PhotoGallerySection::updateOrCreate(
-            ['photo_gallery_id' => $photoGallery->id, 'title' => 'Outdoor Plumbing'],
+            ['photo_gallery_id' => $photoGallery->id, 'title' => 'Plomberie Extérieure'],
             []
         );
     }

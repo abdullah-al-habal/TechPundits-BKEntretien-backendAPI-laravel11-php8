@@ -15,25 +15,25 @@ class HomePageSectionSeeder extends Seeder
         $homePage = HomePage::firstOrCreate();
 
         HomePageSection::updateOrCreate(
-            ['home_page_id' => $homePage->id, 'title' => 'Expert Plumbing Services'],
+            ['home_page_id' => $homePage->id, 'title' => 'Services de Plomberie Experts'],
             [
-                'description' => 'Our team of skilled plumbers provides top-notch services for all your plumbing needs, from repairs to installations.',
+                'description' => 'Notre équipe de plombiers qualifiés fournit des services de première qualité pour tous vos besoins en plomberie, des réparations aux installations.',
                 'image' => 'expert-services.jpg',
             ]
         );
 
         HomePageSection::updateOrCreate(
-            ['home_page_id' => $homePage->id, 'title' => '24/7 Emergency Support'],
+            ['home_page_id' => $homePage->id, 'title' => 'Support d\'Urgence 24/7'],
             [
-                'description' => 'We offer round-the-clock emergency plumbing services to ensure your peace of mind at any time of day or night.',
+                'description' => 'Nous offrons des services de plomberie d\'urgence 24h/24 et 7j/7 pour assurer votre tranquillité d\'esprit à tout moment de la journée ou de la nuit.',
                 'image' => 'emergency-support.jpg',
             ]
         );
 
         HomePageSection::updateOrCreate(
-            ['home_page_id' => $homePage->id, 'title' => 'Quality Guaranteed'],
+            ['home_page_id' => $homePage->id, 'title' => 'Qualité Garantie'],
             [
-                'description' => 'We stand behind our work with a satisfaction guarantee, ensuring that every job is completed to the highest standards.',
+                'description' => 'Nous garantissons notre travail avec une satisfaction garantie, en veillant à ce que chaque travail soit effectué selon les normes les plus élevées.',
                 'image' => 'quality-guarantee.jpg',
             ]
         );

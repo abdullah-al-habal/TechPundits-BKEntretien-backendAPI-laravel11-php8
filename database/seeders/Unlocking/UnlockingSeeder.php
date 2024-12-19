@@ -13,32 +13,32 @@ class UnlockingSeeder extends Seeder
     public function run(): void
     {
         $unlocking = Unlocking::firstOrCreate([
-            'banner_image' => 'unlocking-banner.jpg',
-            'banner_image_alt_text' => 'Unlocking services banner',
-            'banner_image_text' => 'Expert Unlocking Solutions',
-            'main_image' => 'unlocking-main.jpg',
-            'main_image_alt_text' => 'Professional unlocking service',
-            'main_image_text' => 'Fast and Reliable Unlocking',
+            'banner_image' => 'banniere-deverrouillage.jpg',
+            'banner_image_alt_text' => 'Bannière des services de déverrouillage',
+            'banner_image_text' => 'Solutions de Déverrouillage Experts',
+            'main_image' => 'deverrouillage-principal.jpg',
+            'main_image_alt_text' => 'Service de déverrouillage professionnel',
+            'main_image_text' => 'Déverrouillage Rapide et Fiable',
         ]);
 
         UnlockingSection::updateOrCreate(
-            ['unlocking_id' => $unlocking->id, 'title' => 'Emergency Unlocking'],
+            ['unlocking_id' => $unlocking->id, 'title' => 'Déverrouillage d\'Urgence'],
             [
-                'description' => 'We offer 24/7 emergency unlocking services for your home, car, or office.',
+                'description' => 'Nous offrons des services de déverrouillage d\'urgence 24/7 pour votre maison, voiture ou bureau.',
             ]
         );
 
         UnlockingSection::updateOrCreate(
-            ['unlocking_id' => $unlocking->id, 'title' => 'Advanced Techniques'],
+            ['unlocking_id' => $unlocking->id, 'title' => 'Techniques Avancées'],
             [
-                'description' => 'Our experts use the latest techniques and tools to unlock any type of lock safely.',
+                'description' => 'Nos experts utilisent les dernières techniques et outils pour déverrouiller tout type de serrure en toute sécurité.',
             ]
         );
 
         UnlockingSection::updateOrCreate(
-            ['unlocking_id' => $unlocking->id, 'title' => 'Affordable Rates'],
+            ['unlocking_id' => $unlocking->id, 'title' => 'Tarifs Abordables'],
             [
-                'description' => 'We provide high-quality unlocking services at competitive prices.',
+                'description' => 'Nous fournissons des services de déverrouillage de haute qualité à des prix compétitifs.',
             ]
         );
     }

@@ -14,33 +14,33 @@ class FaqSeeder extends Seeder
     {
         $homePage = HomePage::firstOrCreate([
             'banner_image' => 'default-banner.jpg',
-            'banner_image_alt_text' => 'Default Banner',
-            'banner_image_text' => 'Welcome to our plumbing services',
+            'banner_image_alt_text' => 'Bannière par défaut',
+            'banner_image_text' => 'Bienvenue à nos services de plomberie',
             'main_image' => 'default-main.jpg',
-            'main_image_alt_text' => 'Default Main Image',
-            'main_image_text' => 'Quality Plumbing Solutions',
+            'main_image_alt_text' => 'Image principale par défaut',
+            'main_image_text' => 'Solutions de plomberie de qualité',
         ]);
 
         Faq::updateOrCreate(
-            ['home_page_id' => $homePage->id, 'question' => 'What services do you offer?'],
+            ['home_page_id' => $homePage->id, 'question' => 'Quels services proposez-vous ?'],
             [
-                'answer' => 'We offer a wide range of plumbing services including drain cleaning, pipe repair, water heater installation, and emergency plumbing.',
+                'answer' => 'Nous offrons une large gamme de services de plomberie incluant le nettoyage de drains, la réparation de tuyaux, l\'installation de chauffe-eau et la plomberie d\'urgence.',
                 'image' => 'services.jpg',
             ]
         );
 
         Faq::updateOrCreate(
-            ['home_page_id' => $homePage->id, 'question' => 'How quickly can you respond to emergencies?'],
+            ['home_page_id' => $homePage->id, 'question' => 'Quelle est votre réactivité aux urgences ?'],
             [
-                'answer' => 'We offer 24/7 emergency services and aim to respond to all urgent calls within 1 hour.',
+                'answer' => 'Nous offrons des services d\'urgence 24/7 et nous visons à répondre à tous les appels urgents dans un délai d\'une heure.',
                 'image' => 'emergency.jpg',
             ]
         );
 
         Faq::updateOrCreate(
-            ['home_page_id' => $homePage->id, 'question' => 'Do you offer free estimates?'],
+            ['home_page_id' => $homePage->id, 'question' => 'Proposez-vous des devis gratuits ?'],
             [
-                'answer' => 'Yes, we provide free estimates for all our services. Contact us to schedule an appointment.',
+                'answer' => 'Oui, nous fournissons des devis gratuits pour tous nos services. Contactez-nous pour planifier un rendez-vous.',
                 'image' => 'estimate.jpg',
             ]
         );

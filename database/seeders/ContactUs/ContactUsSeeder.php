@@ -12,33 +12,33 @@ class ContactUsSeeder extends Seeder
 {
     public function run(): void
     {
-        // Create a contact us instance
+        // Créer une instance Contactez-nous
         $contactUs = ContactUs::firstOrCreate([
-            'banner_image' => 'path/to/banner_image.jpg',
-            'banner_image_alt_text' => 'Banner Image Alt Text',
-            'banner_image_text' => 'Banner Image Description',
-            'main_image' => 'path/to/main_image.jpg',
-            'main_image_alt_text' => 'Main Image Alt Text',
-            'first_description' => 'First Description',
-            'second_description' => 'Second Description',
+            'banner_image' => 'chemin/vers/banner_image.jpg',
+            'banner_image_alt_text' => "Texte alternatif de l'image de la bannière",
+            'banner_image_text' => "Description de l'image de la bannière",
+            'main_image' => 'chemin/vers/main_image.jpg',
+            'main_image_alt_text' => "Texte alternatif de l'image principale",
+            'first_description' => 'Première description',
+            'second_description' => 'Deuxième description',
         ]);
 
-        // Insert sections related to contact us
+        // Insérer les sections liées à Contactez-nous
         ContactUsSection::insert([
             [
                 'contact_us_id' => $contactUs->id,
-                'title' => 'Get in Touch',
-                'description' => 'We\'re here to help with all your plumbing needs. Contact us today for expert service.',
+                'title' => 'Contactez-nous',
+                'description' => "Nous sommes là pour répondre à tous vos besoins en plomberie. Contactez-nous dès aujourd'hui pour un service expert.",
             ],
             [
                 'contact_us_id' => $contactUs->id,
-                'title' => 'Our Location',
-                'description' => '123 Plumber Street, Pipetown, PT 12345',
+                'title' => 'Notre Emplacement',
+                'description' => '123 Rue des Plombiers, Pipetown, PT 12345',
             ],
             [
                 'contact_us_id' => $contactUs->id,
-                'title' => 'Contact Information',
-                'description' => 'Phone: (555) 123-4567\nEmail: info@expertplumbers.com',
+                'title' => 'Informations de Contact',
+                'description' => 'Téléphone : (555) 123-4567\nEmail : info@expertplumbers.com',
             ],
         ]);
     }

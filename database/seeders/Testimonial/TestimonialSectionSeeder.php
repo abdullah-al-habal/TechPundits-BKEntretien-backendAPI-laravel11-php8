@@ -12,32 +12,32 @@ class TestimonialSectionSeeder extends Seeder
 {
     public function run(): void
     {
-        // Create a testimonial instance
+        // Créer une instance de témoignage
         $testimonial = Testimonial::firstOrCreate([
-            'banner_image' => 'path/to/banner_image.jpg',
-            'banner_image_alt_text' => 'Banner Image Alt Text',
-            'banner_image_text' => 'Banner Image Description',
-            'main_image' => 'path/to/main_image.jpg',
-            'main_image_alt_text' => 'Main Image Alt Text',
-            'main_image_text' => 'Main Image Description',
+            'banner_image' => 'chemin/vers/banner_image.jpg',
+            'banner_image_alt_text' => 'Texte alternatif de l\'image de la bannière',
+            'banner_image_text' => 'Description de l\'image de la bannière',
+            'main_image' => 'chemin/vers/main_image.jpg',
+            'main_image_alt_text' => 'Texte alternatif de l\'image principale',
+            'main_image_text' => 'Description de l\'image principale',
         ]);
 
-        // Insert sections related to the testimonial
+        // Insérer des sections liées au témoignage
         TestimonialSection::insert([
             [
                 'testimonial_id' => $testimonial->id,
-                'title' => 'Customer Satisfaction',
-                'description' => 'Our customers consistently rate us highly for our professional and efficient plumbing services.',
+                'title' => 'Satisfaction Client',
+                'description' => 'Nos clients nous évaluent constamment très bien pour nos services de plomberie professionnels et efficaces.',
             ],
             [
                 'testimonial_id' => $testimonial->id,
-                'title' => 'Expert Solutions',
-                'description' => 'We pride ourselves on providing expert solutions to even the most complex plumbing problems.',
+                'title' => 'Solutions Expert',
+                'description' => 'Nous sommes fiers de fournir des solutions expertes aux problèmes de plomberie les plus complexes.',
             ],
             [
                 'testimonial_id' => $testimonial->id,
-                'title' => 'Reliable Service',
-                'description' => 'Our team is known for its reliability and punctuality, ensuring your plumbing issues are addressed promptly.',
+                'title' => 'Service Fiable',
+                'description' => 'Notre équipe est connue pour sa fiabilité et sa ponctualité, garantissant que vos problèmes de plomberie sont résolus rapidement.',
             ],
         ]);
     }

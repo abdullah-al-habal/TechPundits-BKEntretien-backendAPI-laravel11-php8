@@ -17,16 +17,16 @@ class PhotoGallerySectionImageSeeder extends Seeder
         foreach ($sections as $section) {
             PhotoGallerySectionImage::create([
                 'photo_gallery_section_id' => $section->id,
-                'image' => 'gallery-'.strtolower(str_replace(' ', '-', $section->title)).'.jpg',
-                'alt_text' => $section->title.' Project',
-                'description' => 'A showcase of our '.$section->title.' work.',
+                'image' => 'gallery-' . strtolower(str_replace(' ', '-', $section->title)) . '.jpg',
+                'alt_text' => 'Projet ' . $section->title,
+                'description' => 'Une vitrine de notre travail sur ' . $section->title . '.',
             ]);
 
             PhotoGallerySectionImage::create([
                 'photo_gallery_section_id' => $section->id,
-                'image' => 'gallery-'.strtolower(str_replace(' ', '-', $section->title)).'-2.jpg',
-                'alt_text' => 'Another '.$section->title.' Project',
-                'description' => 'Another example of our expertise in '.$section->title.'.',
+                'image' => 'gallery-' . strtolower(str_replace(' ', '-', $section->title)) . '-2.jpg',
+                'alt_text' => 'Un autre projet ' . $section->title,
+                'description' => 'Un autre exemple de notre expertise en ' . $section->title . '.',
             ]);
         }
     }

@@ -14,34 +14,34 @@ class DrainCleaningSeeder extends Seeder
     {
         $drainCleaning = DrainCleaning::firstOrCreate([
             'banner_image' => 'default-drain-cleaning-banner.jpg',
-            'banner_image_alt_text' => 'Professional Drain Cleaning Services',
-            'banner_image_text' => 'Expert Drain Cleaning Solutions',
-            'title' => 'Professional Drain Cleaning Services',
-            'first_description' => 'We offer top-notch drain cleaning services to keep your plumbing system running smoothly.',
-            'second_description' => 'Our experienced technicians use advanced equipment to tackle even the toughest clogs.',
+            'banner_image_alt_text' => 'Services Professionnels de Nettoyage des Drains',
+            'banner_image_text' => 'Solutions Expert en Nettoyage des Drains',
+            'title' => 'Services Professionnels de Nettoyage des Drains',
+            'first_description' => 'Nous offrons des services de nettoyage de drains de première qualité pour assurer le bon fonctionnement de votre système de plomberie.',
+            'second_description' => 'Nos techniciens expérimentés utilisent des équipements avancés pour éliminer même les bouchons les plus tenaces.',
             'main_image' => 'main-drain-cleaning-image.jpg',
-            'main_image_alt_text' => 'Drain cleaning in progress',
-            'main_image_text' => 'Our team at work, ensuring your drains are clear and functional.',
+            'main_image_alt_text' => 'Nettoyage des drains en cours',
+            'main_image_text' => 'Notre équipe au travail, garantissant que vos drains sont dégagés et fonctionnels.',
         ]);
 
         DrainCleaningSection::updateOrCreate(
-            ['drain_cleaning_id' => $drainCleaning->id, 'title' => 'Professional Drain Cleaning'],
+            ['drain_cleaning_id' => $drainCleaning->id, 'title' => 'Nettoyage Professionnel des Drains'],
             [
-                'description' => 'Our expert technicians use state-of-the-art equipment to clear even the toughest clogs and keep your drains flowing smoothly.',
+                'description' => 'Nos techniciens experts utilisent un équipement de pointe pour éliminer même les bouchons les plus tenaces et garantir que vos drains fonctionnent parfaitement.',
             ]
         );
 
         DrainCleaningSection::updateOrCreate(
-            ['drain_cleaning_id' => $drainCleaning->id, 'title' => 'Common Drain Issues'],
+            ['drain_cleaning_id' => $drainCleaning->id, 'title' => 'Problèmes Courants de Drain'],
             [
-                'description' => 'We handle a variety of drain problems including slow drains, complete blockages, foul odors, and recurring clogs in sinks, showers, and toilets.',
+                'description' => 'Nous traitons divers problèmes de drains, y compris les drains lents, les obstructions complètes, les mauvaises odeurs et les bouchons récurrents dans les éviers, les douches et les toilettes.',
             ]
         );
 
         DrainCleaningSection::updateOrCreate(
-            ['drain_cleaning_id' => $drainCleaning->id, 'title' => 'Preventive Maintenance'],
+            ['drain_cleaning_id' => $drainCleaning->id, 'title' => 'Entretien Préventif'],
             [
-                'description' => 'Regular drain cleaning can prevent costly repairs and extend the life of your plumbing system. Ask about our maintenance plans.',
+                'description' => 'Un nettoyage régulier des drains peut prévenir des réparations coûteuses et prolonger la durée de vie de votre système de plomberie. Demandez-nous des informations sur nos plans de maintenance.',
             ]
         );
     }

@@ -13,31 +13,31 @@ class SiteSettingSeeder extends Seeder
     {
         SiteSetting::insert([
             [
-                'key' => 'company_name',
-                'value' => 'Expert Plumbers'
+                'key' => 'nom_entreprise',
+                'value' => 'Plombiers Experts'
             ],
             [
-                'key' => 'company_phone',
+                'key' => 'telephone_entreprise',
                 'value' => '(555) 123-4567'
             ],
             [
-                'key' => 'company_email',
+                'key' => 'email_entreprise',
                 'value' => 'info@expertplumbers.com'
             ],
             [
-                'key' => 'company_address',
-                'value' => '123 Plumber Street, Pipetown, PT 12345'
+                'key' => 'adresse_entreprise',
+                'value' => '123 Rue des Plombiers, Pipetown, PT 12345'
             ],
             [
-                'key' => 'social_media_facebook',
+                'key' => 'reseaux_sociaux_facebook',
                 'value' => 'https://facebook.com/expertplumbers'
             ],
             [
-                'key' => 'social_media_twitter',
+                'key' => 'reseaux_sociaux_twitter',
                 'value' => 'https://twitter.com/expertplumbers'
             ],
             [
-                'key' => 'social_media_instagram',
+                'key' => 'reseaux_sociaux_instagram',
                 'value' => 'https://instagram.com/expertplumbers'
             ],
         ]);

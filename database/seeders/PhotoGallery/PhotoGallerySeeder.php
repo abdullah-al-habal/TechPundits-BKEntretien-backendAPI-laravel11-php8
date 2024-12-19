@@ -13,12 +13,12 @@ class PhotoGallerySeeder extends Seeder
     {
         PhotoGallery::create([
             'banner_image' => 'photo-gallery-banner.jpg',
-            'banner_image_alt_text' => 'Our Photo Gallery',
-            'title' => 'Plumbing Project Gallery',
-            'description' => 'Explore our completed plumbing projects',
+            'banner_image_alt_text' => 'Notre Galerie de Photos',
+            'title' => 'Galerie de Projets de Plomberie',
+            'description' => 'Explorez nos projets de plomberie terminés',
             'main_image' => 'gallery-main.jpg',
-            'main_image_alt_text' => 'Showcase of our best work',
-            'main_image_text' => 'Quality Plumbing Solutions',
+            'main_image_alt_text' => 'Présentation de notre meilleur travail',
+            'main_image_text' => 'Solutions de Plomberie de Qualité',
         ]);
     }
 }

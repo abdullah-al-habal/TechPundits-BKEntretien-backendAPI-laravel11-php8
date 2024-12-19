@@ -13,11 +13,11 @@ class HomePageSeeder extends Seeder
     {
         HomePage::create([
             'banner_image' => 'banner.jpg',
-            'banner_image_alt_text' => 'Welcome to our plumbing services',
-            'banner_image_text' => 'Expert Plumbing Solutions for Your Home',
+            'banner_image_alt_text' => 'Bienvenue à nos services de plomberie',
+            'banner_image_text' => 'Solutions de plomberie expertes pour votre maison',
             'main_image' => 'main-service.jpg',
-            'main_image_alt_text' => 'Professional plumber at work',
-            'main_image_text' => 'Quality Service Guaranteed',
+            'main_image_alt_text' => 'Plombier professionnel au travail',
+            'main_image_text' => 'Service de qualité garanti',
         ]);
     }
 }
